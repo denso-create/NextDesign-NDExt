@@ -1,35 +1,51 @@
-# Next Design Extension Utility Tool
-Next Designのエクステンションを開発するツールです。
+# NDExt 
+Next Designのエクステンションの開発を支援するコマンドラインツールです。
+
+- [インストール方法](#インストール方法)
+- [利用方法](#利用方法)
+- [リリースノート](#リリースノート)
+- [パッケージの公開方法](#パッケージの公開方法)
+  - [ローカル環境からの公開](#ローカル環境からの公開)
+  - [Github Actionsによる公開](#github-actionsによる公開)
+- [参照](#参照)
 
 ## インストール方法
-* 事前条件：このプログラムを動作させるには [.NET Core 3.1のSdk](https://dotnet.microsoft.com/download/dotnet/3.1)のインストールが必要です。
-
 * Next Designのエクステンション開発支援コマンドラインツールをグローバルツールとして[nuget.orgに公開](https://www.nuget.org/packages/NDExt/)しています。
- * コマンドプロンプトから次のように実行してインストールします。
+* コマンドプロンプトから次のように実行してインストールします。
+```
+> dotnet tool install --global NDExt 
+```
+
+* なお、このプログラムを動作させるには [.NET Core 3.1のSdk](https://dotnet.microsoft.com/download/dotnet/3.1)のインストールが必要です。
   
 
 ## 利用方法
-* [こちらのreadme](src/NDExt/docs/readme.md)を参照して下さい。
+* 利用方法の詳細は[こちらのreadme](src/NDExt/docs/readme.md)を参照して下さい。
 
 ## リリースノート
-* [こちらのリリースノート](releasenotes.md)を参照して下さい。
+* 各バージョンごとの変更点は[こちらのリリースノート](releasenotes.md)を参照して下さい。
+
+## パッケージの公開方法
+nuget.orgへの公開方法を説明します。
+
+### ローカル環境からの公開
+
+1. 事前準備
+   * nuget.orgで `densocreate`の組織に所属するアカウントを登録して下さい。
+   * 環境変数 `NUGET_APIKEY` をセットして下さい。
+
+2. 公開方法
+   * `publish.cmd`を実行して下さい。
+
+### Github Actionsによる公開
+* [publish to nugetアクション](https://github.com/denso-create/NextDesign-NDExt/actions/workflows/publish.yml)を用いて下さい。
 
 
-## nuget.orgへのパッケージの公開方法
+## 参照
+* プロジェクトテンプレート
+  * インストール・作成するプロジェクトテンプレートは `NextDesign.Extension.ProjectTemplates` のプロジェクトテンプレートを用いています。
+  * [Githubリポジトリ](https://github.com/denso-create/NextDesign-Extension-ProjectTemplates)
+  * [Nuget.org](https://www.nuget.org/packages/NextDesign.Extension.ProjectTemplates/)
+*  関連パッケージもnuget.orgにて[プレビュー公開](https://www.nuget.org/profiles/densocreate)しています。
 
-### 事前準備
-* nuget.orgで `densocreate`の組織に所属するアカウントを登録して下さい。
-* 環境変数 `NUGET_APIKEY` をセットして下さい。
-
-### 公開方法
-* `publish.cmd`を実行して下さい。
-
-## 関連パッケージ
-関連パッケージもnuget.orgにて[プレビュー公開](https://www.nuget.org/profiles/densocreate)しています。
-
-## TODO
-* Visual Studioでのダイアログでの対応
-  * テンプレートをNuget.orgにpublishしておく。
-  * NDExtはそのパッケージをインストールするようにする。
-    * https://github.com/dotnet/iot/issues/1173
 
