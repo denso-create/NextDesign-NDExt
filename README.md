@@ -9,7 +9,7 @@ Next Designのエクステンションを開発するツールです。
   
 
 ## 利用方法
-* [こちらのreadme](src\NDExt\docs\readme.md)を参照して下さい。
+* [こちらのreadme](reamdsrc/NDExt/docs/readme.md)を参照して下さい。
 
 ## リリースノート
 * [こちらのリリースノート](releasenotes.md)を参照して下さい。
