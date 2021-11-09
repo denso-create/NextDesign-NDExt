@@ -1,0 +1,141 @@
+﻿using NDExt.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Xml;
+
+namespace NDExt.Services
+{
+    /// <summary>
+    /// パッケージ化サービスです
+    /// </summary>
+
+    public class PackageService
+    {
+        #region Privateなメンバ
+        /// <summary>
+        /// リクエスト情報
+        /// </summary>
+        private PackageRequest Request { get; set; }
+
+        #endregion
+
+        #region 公開メソッド
+        /// <summary>
+        /// パッケージ化
+        /// </summary>
+        /// <param name="request"></param>
+        public void Package(PackageRequest request)
+        {
+            Request = request;
+            var projectDirs = NDExtensionProjectFileUtil.FindExtensionProjectDirs(request.TargetDir);
+
+            // プロジェクトファイルが存在しない
+            if (!projectDirs.Any())
+            {
+                throw new UserException($"エクステンションのプロジェクトファイル(csproj)が見つかりませんでした。");
+            }
+
+            // 見つかったプロジェクトファイルに対して実行
+            foreach (var projectDir in projectDirs)
+            {
+                PackageProject(projectDir);
+            }
+        }
+        #endregion
+
+
+        #region 内部メソッド
+
+        /// <summary>
+        /// プロジェクトファイルをパッケージ化します
+        /// </summary>
+        /// <param name="projectDir"></param>
+        private void PackageProject(string projectDir)
+        {
+            #region ディレクトリ
+            var projectFilePath = NDExtensionProjectFileUtil.GetProjectFilePath(projectDir);
+            var projectFileName = Path.GetFileName(projectFilePath);
+
+            var buildDir = Path.Combine(projectDir, "bin", Request.BuildConfig, Request.TargetFramweorkBuildFolder);
+            var buildPublishDir = Path.Combine(buildDir, "publish");
+            var packageBuildDir = Path.Combine(buildDir, AppSettings.PackageBuildDir);
+            var packageContentsDir = Path.Combine(projectDir, AppSettings.PackageContentsDir);
+            var packageOutputDir = Path.Combine(projectDir, Request.OutputDir);
+
+            ConsoleUtil.WriteLine();
+            ConsoleUtil.WriteLine();
+            ConsoleUtil.WriteLine("==========> Packaging Project <=========================");
+            ConsoleUtil.WriteLine($"[in] TargetProject: {projectFileName}");
+            ConsoleUtil.WriteLine($"[in] Build Target: {Request.BuildConfig}");
+            ConsoleUtil.WriteLine($"[in] ND Version: {Request.NDVersion}");
+            ConsoleUtil.WriteLine($"[in] Package Contents Dir: {packageContentsDir}");
+            ConsoleUtil.WriteLine($"[out] Package Output Dir: {packageOutputDir}");
+            ConsoleUtil.WriteLine($"[out] Package Copy Dir: {Request.CopyDir}");
+            ConsoleUtil.WriteLine("========================================================");
+            ConsoleUtil.WriteLine();
+
+            #endregion
+
+            #region プロジェクトのビルド
+            ConsoleUtil.WriteHeader("Build Project");
+
+            // 一旦削除しておく
+            FileUtil.DeleteDirectory(buildDir);
+
+            // ビルドを実行
+            ProcessUtil.Start("dotnet", $"publish {projectFilePath} -c {Request.BuildConfig}");
+
+            #endregion
+
+
+            #region パッケージ化
+            ConsoleUtil.WriteHeader("Packaging");
+
+            // パッケージのビルド用フォルダを作成（存在していれば削除して作成）
+            FileUtil.RecreateDirectory(packageBuildDir);
+
+            // nuspecファイルを保存
+            var nuspec = NdPackageNuspecInfo.CreateFromProjectFile(projectFilePath);
+            nuspec.CheckErrors();
+            var nuspecFilePath = Path.Combine(packageBuildDir, $"{nuspec.Id}.nuspec");
+            nuspec.SaveToFile(nuspecFilePath);
+
+            // publishした結果をパッケージのビルド用フォルダにコピー
+            var extensionBinDir = Path.Combine(packageBuildDir, "extensions", Request.NDVersion, nuspec.Id);
+            NDExtensionProjectFileUtil.CopyExtensionFolder(buildPublishDir, extensionBinDir);
+
+            // パッケージのコンテンツフォルダがあればその内容もコピー
+            if (Directory.Exists(packageContentsDir))
+            {
+                FileUtil.CopyDirectory(packageContentsDir, packageBuildDir);
+            }
+
+            // パッケージの実行
+            var nugetargs = @$"pack ""{nuspecFilePath}""  -PackagesDirectory ""{packageBuildDir}""  -NoPackageAnalysis -OutputDirectory ""{packageOutputDir}"" ";
+            ProcessUtil.Start("nuget.exe", nugetargs);
+            #endregion
+
+
+            #region パッケージをフォルダにコピー
+
+            if ( !string.IsNullOrEmpty(Request.CopyDir))
+            {
+                ConsoleUtil.WriteHeader("Copy nupkg");
+                FileUtil.CopyFiles(packageOutputDir, "*.nupkg", Request.CopyDir);
+            }
+
+            #endregion
+
+            ConsoleUtil.WriteHeader("Done");
+            ConsoleUtil.WriteLine("パッケージ化を完了しました。");
+            ConsoleUtil.WriteLine();
+
+        }
+
+        #endregion
+
+    }
+}

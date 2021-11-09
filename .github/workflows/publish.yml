@@ -1,0 +1,35 @@
+name: publish to nuget
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      # slnファイルの存在するフォルダの相対パス
+      SolutionPath: src
+
+      # nupkgのビルド結果があるbinのパス
+      NugetPackagePath: src/NDExt/bin/Release
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+
+      - name: Restore dependencies
+        run: dotnet restore ${SolutionPath}
+
+      - name: Build
+        run: dotnet build ${SolutionPath} --no-restore --configuration release
+
+      - name: Pack
+        run: dotnet pack ${SolutionPath}  --configuration release
+
+      - name: Push
+        run: |
+          cd ${NugetPackagePath}
+          dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json  --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
