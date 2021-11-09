@@ -16,3 +16,5 @@ dotnet pack -c Release
 rem push
 cd NDExt\bin\Release
 dotnet nuget push "*.nupkg" --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key %NUGET_APIKEY%
+
+pause
