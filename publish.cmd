@@ -6,7 +6,7 @@ echo #--------------------------------------
 rem [Remarks] Please Set NUGET_APIKEY env varible on your computer
 
 rem clean packages
-del .\src\bin\Release\*.nupkg
+del .\src\NDExt\bin\Release\*.nupkg
 
 rem build & pack
 cd src

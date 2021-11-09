@@ -7,7 +7,7 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>ndext</ToolCommandName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.7.1</Version>
+    <Version>0.7.2</Version>
     <Authors>DENSO CREATE INC.</Authors>
     <Company>DENSO CREATE INC.</Company>
     <Product />
