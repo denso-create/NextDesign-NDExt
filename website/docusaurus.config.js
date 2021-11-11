@@ -8,13 +8,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'NDExt',
   tagline: 'Next Design エクステンション開発ユーティリティ',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
+  url: 'http://denso-create.github.io',
+  baseUrl: '/NextDesign-NDExt/',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'densocreate', // Usually your GitHub org/user name.
-  projectName: 'ndext', // Usually your repo name.
+  projectName: 'NextDesign-NDExt', // Usually your repo name.
 
   presets: [
     [
@@ -24,14 +24,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+          editUrl: 'https://github.com/denso-create/NextDesign-NDExt/tree/main/website/docs',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -86,7 +79,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/docs/intro',
+                to: '/docs',
               },
             ],
           },
