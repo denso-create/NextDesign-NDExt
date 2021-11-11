@@ -13,7 +13,7 @@ const config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'densocreate', // Usually your GitHub org/user name.
+  organizationName: 'denso-create', // Usually your GitHub org/user name.
   projectName: 'NextDesign-NDExt', // Usually your repo name.
 
   presets: [
@@ -24,7 +24,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
-          editUrl: 'https://github.com/denso-create/NextDesign-NDExt/tree/main/website/docs',
+          editUrl: 'https://github.com/denso-create/NextDesign-NDExt/tree/main/website',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
