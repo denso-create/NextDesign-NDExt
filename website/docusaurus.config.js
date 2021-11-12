@@ -113,6 +113,14 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+
+  plugins: [
+    [require.resolve('@cmfcmf/docusaurus-search-local'), {
+      docsRouteBasePath: '/',
+      //style: "none",
+      language: "ja",
+    }]
+  ],    
 };
 
 module.exports = config;
