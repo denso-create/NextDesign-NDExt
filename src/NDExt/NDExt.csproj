@@ -7,17 +7,18 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>ndext</ToolCommandName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.7.4</Version>
-     <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <Version>1.0.1</Version>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
     <Authors>DENSO CREATE INC.</Authors>
     <Company>DENSO CREATE INC.</Company>
     <Product />
     <Description>* Next Designのエクステンション開発のためのユーティリティコマンドです。
-* Next Design V2を対象にしています。
-* 本アプリケーションはプレビュー版です。
-</Description>
-    <PackageProjectUrl>https://www.nextdesign.app/</PackageProjectUrl>
+* Next Design V2を対象にしています。</Description>
+    <PackageProjectUrl>https://docs.nextdesign.app/extension/docs/tools/ndext/intro</PackageProjectUrl>
     <NoDefaultExcludes>true</NoDefaultExcludes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/denso-create/NextDesign-NDExt</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,12 +29,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="docs\readme.md" Pack="true" PackagePath=""/>
     <None Update="settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+      <None Include="docs\readme.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="dotnet publish --no-build" />

@@ -1,23 +1,18 @@
 # NDExt 
 Next Designのエクステンションの開発を支援するコマンドラインツールです。
 
-
-> **Notice:**
-> 本ツールはNext Design V2が対象のプレビュー公開です。
-> Next Design V1.Xでは利用できません。
-
-- [Website](#website)
 - [インストール方法](#インストール方法)
 - [利用方法](#利用方法)
 - [リリースノート](#リリースノート)
 - [パッケージの公開方法](#パッケージの公開方法)
   - [ローカル環境からの公開](#ローカル環境からの公開)
   - [Github Actionsによる公開](#github-actionsによる公開)
-- [Website](#website-1)
 - [参照](#参照)
+- [ライセンス](#ライセンス)
 
-## Website
-https://denso-create.github.io/NextDesign-NDExt/
+> **Notice:**
+> 本ツールはNext Design V2が対象としています。
+> Next Design V1.Xでは利用できません。
 
 
 ## インストール方法
@@ -31,8 +26,33 @@ https://denso-create.github.io/NextDesign-NDExt/
   
 
 ## 利用方法
+Next Design のエクステンション開発を支援するコマンドラインツールです。次のような操作が簡単になります。
 
-* 利用方法の詳細は[こちらのWebsite](https://denso-create.github.io/NextDesign-NDExt/)を参照して下さい。
+* エクステンション開発プロジェクトの作成
+* Visual Studioでのプロジェクトテンプレートの登録
+* エクステンションのパッケージ化
+
+利用できるコマンドは下記を実行して確認して下さい。
+
+```
+NDExt:
+  Next Designのエクステンションを作成できるユーティリティです。
+
+Usage:
+  NDExt [options] [command]
+
+Options:
+  --version    Display version information
+
+Commands:
+  install            プロジェクトのテンプレートをインストールします。最初に実行して下さい。
+  new <name>         現在のフォルダにNext Designのエクステンションのプロジェクトを作成します。
+  new-extp <name>    現在のフォルダにExtensionPointsライブラリを用いたエクステンションのプロジェクトを作成します。
+  pack               エクステンションをパッケージ化します。
+  uninstall          プロジェクトのテンプレートをアンインストールします。
+```
+
+詳しくは[NDExtのドキュメント](https://docs.nextdesign.app/extension/docs/tools/ndext/intro)を参照して下さい。
 
 
 ## リリースノート
@@ -55,26 +75,13 @@ nuget.orgへの公開方法を説明します。
 * [publish to nugetアクション](https://github.com/denso-create/NextDesign-NDExt/actions/workflows/publish.yml)を用いて下さい。
 
 
-## Website
-静的サイトジェネレータ[Docusaurus](https://docusaurus.io/)を用いています。
-`gh-pages`ブランチにビルドした結果をプッシュするには、 [こちらの記事](https://docusaurus.io/docs/deployment#deploy)を参照して下さい。
-
-1. 事前準備
-   * `website`の下が https://denso-create.github.io/NextDesign-NDExt の`docusaurus` の環境です。[websiteフォルダのreadme.md](website/README.md)を参照して下さい。
-   * 環境変数で `GIT_USER` で本リポジトリに自身のユーザ名を設定してください（本リポジトリへの書き込み権限が必要です）。
-
-2. 公開方法
-   * ローカルの環境で以下を実行することで`gh-pages`ブランチに公開できます。
-
-  ```
-  publish-website.cmd
-  ```
-
 ## 参照
 * プロジェクトテンプレート
   * インストール・作成するプロジェクトテンプレートは `NextDesign.Extension.ProjectTemplates` のプロジェクトテンプレートを用いています。
   * [Githubリポジトリ](https://github.com/denso-create/NextDesign-Extension-ProjectTemplates)
   * [Nuget.org](https://www.nuget.org/packages/NextDesign.Extension.ProjectTemplates/)
-*  関連パッケージもnuget.orgにて[プレビュー公開](https://www.nuget.org/profiles/densocreate)しています。
+*  関連パッケージもnuget.orgにて[公開](https://www.nuget.org/profiles/densocreate)しています。
 
 
+## ライセンス
+本ライブラリはMITライセンスです。詳細は[LICENSE](./LICENSE) を確認してください。
