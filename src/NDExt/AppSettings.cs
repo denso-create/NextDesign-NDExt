@@ -8,17 +8,28 @@ namespace NDExt
 {
     /// <summary>
     /// アプリケーションのコンフィグ情報
+    /// IConfigurationRootをラップしたオブジェクトです。
     /// </summary>
     public static class AppSettings
     {
         private static IConfigurationRoot Config;
 
+        /// <summary>
+        /// Configオブジェクトで初期化
+        /// </summary>
+        /// <param name="config"></param>
         public static void Initialize(IConfigurationRoot config)
         {
             Config = config;
         }
 
         
+        /// <summary>
+        /// 値を取得します
+        /// </summary>
+        /// <param name="defaultValue">エントリがない場合のデフォルト値</param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private static string GetValue(string defaultValue,[CallerMemberName] string name=null)
         {
             var val = Config[name];
@@ -55,9 +66,8 @@ namespace NDExt
         public static string DefaultBuildTarget => GetValue("Debug");
 
         /// <summary>
-        /// デフォルトのNDのバージョン
+        /// デフォルトのNext Designのバージョン
         /// </summary>
-        public static string DefaultNdVersion => GetValue("1.3.11");
-
+        public static string DefaultNdVersion => GetValue("2.0.0");
     }
 }
