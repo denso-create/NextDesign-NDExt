@@ -115,7 +115,15 @@ namespace NDExt.Services
 
             // パッケージの実行
             var nugetargs = @$"pack ""{nuspecFilePath}""  -PackagesDirectory ""{packageBuildDir}""  -NoPackageAnalysis -OutputDirectory ""{packageOutputDir}"" ";
-            ProcessUtil.Start("nuget.exe", nugetargs);
+            
+            try {
+                ProcessUtil.Start("nuget.exe", nugetargs);
+            }
+            catch (FileNotFoundException )
+            {
+                throw new UserException("nuget.exe が見つからないため、パッケージ処理が実行できませんでした。https://www.nuget.org/downloads から nuget.exe をダウンロードし、適切なフォルダーに保存して、そのフォルダーを PATH 環境変数に追加してください。");
+            }
+
             #endregion
 
 
