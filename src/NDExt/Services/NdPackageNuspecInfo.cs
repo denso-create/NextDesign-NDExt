@@ -34,19 +34,22 @@ namespace NDExt.Services
         /// <summary>
         /// Url
         /// </summary>
-        public string ProjectUrl { get; set; } = "https://www.nextdesign.app/";
+        public string ProjectUrl { get; set; }
 
         /// <summary>
         /// バージョン
         /// </summary>
-        public string Version { get; set; } = "1.0.0";
+        public string Version { get; set; }
 
         /// <summary>
         /// Copyright
         /// </summary>
-        public string Copyright { get; set; } = $"Copyright(C) {DateTime.Today.Year} (Your Company Here) All Rights Reserved.";
+        public string Copyright { get; set; }
 
-        public string Author { get; set; } = "(Your Company Here)";
+        /// <summary>
+        /// Authors
+        /// </summary>
+        public string Authors { get; set; }
 
         /// <summary>
         /// Xml文字列として戻します
@@ -62,8 +65,8 @@ namespace NDExt.Services
     <version>{Version}</version>
     <title>{Title}</title>
     <description>{Description}</description>
-    <authors>{Author}</authors>
-    <owners>{Author}</owners>
+    <authors>{Authors}</authors>
+    <owners>{Authors}</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectUrl>{ProjectUrl}</projectUrl>
     <releaseNotes></releaseNotes>
@@ -107,8 +110,17 @@ namespace NDExt.Services
                     var name = item.Name.ToLower();
                     var val = item.InnerText;
 
+                    if (val == null) continue;
+
+                    // 改行コードを統一します
+                    val = val.Replace("\r\n", "\n");
+
                     switch (name)
                     {
+                        case "packageid":
+                            nuspec.Id = val;
+                            break;
+
                         case "version":
                             nuspec.Version = val;
                             break;
@@ -117,20 +129,24 @@ namespace NDExt.Services
                             nuspecDescription = val;
                             break;
 
-                        case "packageid":
-                            nuspec.Id = val;
-                            break;
-
                         case "packageprojecturl":
                             nuspec.ProjectUrl = val;
+                            break;
+
+                        case "authors":
+                            nuspec.Authors= val;
+                            break;
+
+                        case "copyright":
+                            nuspec.Copyright= val;
                             break;
                     }
                 }
             }
 
-            // パッケージの説明の１行目をタイトルとして、２行目以降は説明として抜き出す
-            nuspec.Title = nuspecDescription.Split("\r\n").FirstOrDefault()?.Trim();
-            nuspec.Description = string.Join("\r\n", nuspecDescription.Split("\r\n").Skip(1))?.Trim();
+            // タイトルは説明の1行目、説明は2行目以降に分離
+            nuspec.Title = nuspecDescription.Split("\n").FirstOrDefault()?.Trim();
+            nuspec.Description = string.Join("\n", nuspecDescription.Split("\n").Skip(1))?.Trim();
 
             return nuspec;
         }
@@ -143,7 +159,8 @@ namespace NDExt.Services
         {
             // エラーチェック
             if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルにパッケージId（`PackageId`）を指定して下さい。");
-            if (string.IsNullOrEmpty(Description)) throw new UserException($"csprojファイルで説明（`Description`）が空です。説明欄の1行目にタイトル、2行目以降にパッケージの説明となるように記載して下さい。");
+            if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルに作成者（`Authors`）を指定して下さい。");
+            if (string.IsNullOrEmpty(Description)) throw new UserException($"csprojファイルで説明（`Description`）が空です。説明の1行目がパッケージのタイトル、2行目以降にパッケージの説明となるように記載して下さい。");
             if (string.IsNullOrEmpty(Version)) throw new UserException($"csprojファイルでパッケージバージョンが指定されていません。バージョン（`Version`）を指定して下さい。");
 
         }
