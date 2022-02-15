@@ -133,15 +133,9 @@ namespace NDExt.Services
                 }
             }
 
-<<<<<<< HEAD
             // タイトルは説明の1行目、説明は2行目以降に分離
             nuspec.Title = nuspecDescription.Split("\n").FirstOrDefault()?.Trim();
             nuspec.Description = string.Join("\n", nuspecDescription.Split("\n").Skip(1))?.Trim();
-=======
-            // パッケージの説明の１行目をタイトルとして、２行目以降は説明として抜き出す
-            nuspec.Title = nuspecDescription.Split("\r\n").FirstOrDefault()?.Trim();
-            nuspec.Description = string.Join("\r\n", nuspecDescription.Split("\r\n").Skip(1))?.Trim();
->>>>>>> main
 
             return nuspec;
         }
@@ -153,16 +147,10 @@ namespace NDExt.Services
         public void CheckErrors()
         {
             // エラーチェック
-<<<<<<< HEAD
-            if (string.IsNullOrEmpty(Id)) throw new UserException($"`PackageId`を指定して下さい。");
-            if (string.IsNullOrEmpty(Description)) throw new UserException($"`Description`を指定して下さい。");
-            if (string.IsNullOrEmpty(Version)) throw new UserException($"`Version`を指定して下さい。");
-=======
             if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルにパッケージId（`PackageId`）を指定して下さい。");
             if (string.IsNullOrEmpty(Description)) throw new UserException($"csprojファイルで説明（`Description`）が空です。説明欄の1行目にタイトル、2行目以降にパッケージの説明となるように記載して下さい。");
             if (string.IsNullOrEmpty(Version)) throw new UserException($"csprojファイルでパッケージバージョンが指定されていません。バージョン（`Version`）を指定して下さい。");
 
->>>>>>> main
         }
     }
 
