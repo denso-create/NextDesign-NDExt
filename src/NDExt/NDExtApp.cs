@@ -54,6 +54,10 @@ namespace NDExt
             return 0;
         }
 
+
+        /// <summary>
+        /// 設定の初期化
+        /// </summary>
         private void Configure()
         {
             var config = new ConfigurationBuilder()

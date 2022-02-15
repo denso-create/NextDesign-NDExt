@@ -1,5 +1,5 @@
 # NDExt Release Notes
 
-## 0.7.4
-* readmeを追加
+こちらの[リリースノート](https://docs.nextdesign.app/extension/docs/tools/ndext/releasenote)を参照して下さい。
+
 
