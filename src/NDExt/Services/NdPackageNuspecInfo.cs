@@ -41,9 +41,12 @@ namespace NDExt.Services
         /// </summary>
         public string Version { get; set; } = "1.0.0";
 
-        public string Copyright { get; set; } = $"Copyright(C) {DateTime.Today.Year} DENSO CREATE INC.  All Rights Reserved.";
+        /// <summary>
+        /// Copyright
+        /// </summary>
+        public string Copyright { get; set; } = $"Copyright(C) {DateTime.Today.Year} (Your Company Here) All Rights Reserved.";
 
-        public string Author { get; set; } = "DENSO CREATE INC.";
+        public string Author { get; set; } = "(Your Company Here)";
 
         /// <summary>
         /// Xml文字列として戻します
@@ -125,7 +128,7 @@ namespace NDExt.Services
                 }
             }
 
-            // タイトルは説明の1行目、説明は2行目以降に分離
+            // パッケージの説明の１行目をタイトルとして、２行目以降は説明として抜き出す
             nuspec.Title = nuspecDescription.Split("\r\n").FirstOrDefault()?.Trim();
             nuspec.Description = string.Join("\r\n", nuspecDescription.Split("\r\n").Skip(1))?.Trim();
 
@@ -133,12 +136,15 @@ namespace NDExt.Services
         }
 
 
+        /// <summary>
+        /// エラーチェック
+        /// </summary>
         public void CheckErrors()
         {
             // エラーチェック
-            if (string.IsNullOrEmpty(Id)) throw new UserException($"`PackageId`を指定して下さい。");
-            if (string.IsNullOrEmpty(Description)) throw new UserException($"`Description`を指定して下さい。");
-            if (string.IsNullOrEmpty(Version)) throw new UserException($"`Version`を指定して下さい。");
+            if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルにパッケージId（`PackageId`）を指定して下さい。");
+            if (string.IsNullOrEmpty(Description)) throw new UserException($"csprojファイルで説明（`Description`）が空です。説明欄の1行目にタイトル、2行目以降にパッケージの説明となるように記載して下さい。");
+            if (string.IsNullOrEmpty(Version)) throw new UserException($"csprojファイルでパッケージバージョンが指定されていません。バージョン（`Version`）を指定して下さい。");
 
         }
     }

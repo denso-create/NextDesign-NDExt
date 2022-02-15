@@ -56,7 +56,7 @@ Commands:
 
 
 ## リリースノート
-* 各バージョンごとの変更点は[リリースノート](https://denso-create.github.io/NextDesign-NDExt/releasenote)を参照して下さい。
+* 各バージョンごとの変更点は[リリースノート](https://docs.nextdesign.app/extension/docs/tools/ndext/releasenote)を参照して下さい。
 
 
 ## パッケージの公開方法
