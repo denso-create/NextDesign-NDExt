@@ -104,6 +104,11 @@ namespace NDExt.Services
                     var name = item.Name.ToLower();
                     var val = item.InnerText;
 
+                    if (val == null) continue;
+
+                    // 改行コードを統一します
+                    val = val.Replace("\r\n", "\n");
+
                     switch (name)
                     {
                         case "version":
@@ -126,8 +131,8 @@ namespace NDExt.Services
             }
 
             // タイトルは説明の1行目、説明は2行目以降に分離
-            nuspec.Title = nuspecDescription.Split("\r\n").FirstOrDefault()?.Trim();
-            nuspec.Description = string.Join("\r\n", nuspecDescription.Split("\r\n").Skip(1))?.Trim();
+            nuspec.Title = nuspecDescription.Split("\n").FirstOrDefault()?.Trim();
+            nuspec.Description = string.Join("\n", nuspecDescription.Split("\n").Skip(1))?.Trim();
 
             return nuspec;
         }
@@ -139,7 +144,6 @@ namespace NDExt.Services
             if (string.IsNullOrEmpty(Id)) throw new UserException($"`PackageId`を指定して下さい。");
             if (string.IsNullOrEmpty(Description)) throw new UserException($"`Description`を指定して下さい。");
             if (string.IsNullOrEmpty(Version)) throw new UserException($"`Version`を指定して下さい。");
-
         }
     }
 
