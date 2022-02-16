@@ -29,8 +29,8 @@ namespace NDExt.Commands
         /// <summary>
         /// ハンドラ
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="name">作成プロジェクト名</param>
+        /// <returns>終了コード</returns>
         private int Handle(string name)
         {
             try {
@@ -60,15 +60,21 @@ namespace NDExt.Commands
             return cSuccess;
         }
 
+        /// <summary>
+        /// プロジェクトテンプレート名
+        /// </summary>
         protected abstract string TemplateName { get; }
 
+        /// <summary>
+        /// プロジェクトテンプレートの説明
+        /// </summary>
         protected abstract string TemplateDescription { get; }
 
 
         /// <summary>
         /// ソリューションファイルを取得または作成します
         /// </summary>
-        /// <param name="projectName"></param>
+        /// <param name="projectName">作成するプロジェクト名</param>
         /// <returns></returns>
         protected string CreateOrGetSolution(string projectName)
         {
@@ -92,8 +98,8 @@ namespace NDExt.Commands
         /// <summary>
         /// プロジェクトを作成します
         /// </summary>
-        /// <param name="projectName"></param>
-        /// <param name="templateName"></param>
+        /// <param name="projectName">作成するプロジェクト名</param>
+        /// <param name="templateName">作成時に利用するプロジェクトテンプレート名</param>
         /// <returns></returns>
         protected string  CreateProject(string projectName,string templateName)
         {

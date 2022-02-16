@@ -1,11 +1,12 @@
 # Next Design Extension Utility Tool
 Next Designのエクステンションを開発するツールです。
 
-## インストール方法
-* 事前条件：このプログラムを動作させるには [.NET Core 3.1のSdk](https://dotnet.microsoft.com/download/dotnet/3.1)のインストールが必要です。
+## 必要環境
+* このプログラムを動作させるには [.NET Core 3.1のSdk](https://dotnet.microsoft.com/download/dotnet/3.1)およびnuget.exeのインストールが必要です。
+* nuget.exe は[公式サイト](https://www.nuget.org/downloads)からダウンロードし、適切なフォルダーに保存して、そのフォルダーを PATH 環境変数に追加してください（パスの設定が通っていないと正しく動作しません）。
 
-* Next Designのエクステンション開発支援コマンドラインツールをグローバルツールとして[nuget.orgに公開](https://www.nuget.org/packages/NDExt/)しています。
- * コマンドプロンプトから次のように実行してインストールします。
+## インストール方法
+Next Designのエクステンション開発支援コマンドラインツールをグローバルツールとして[nuget.orgに公開](https://www.nuget.org/packages/NDExt/)しています。コマンドプロンプトから次のように実行してインストールします。
   
 ```
 > dotnet tool install --global NDExt 
@@ -57,3 +58,8 @@ Commands:
 ```
 > ndext pack -c Release -v 2.0.0 
 ```
+
+`pack`コマンドの実行に成功すると`ndpackages`フォルダにnupkgファイルが作成されます。
+
+## ドキュメント
+詳しい利用方法は[NDExtのドキュメント](https://docs.nextdesign.app/extension/docs/tools/ndext/intro)を参照して下さい。

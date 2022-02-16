@@ -1,4 +1,11 @@
 # NDExt Release Notes
+
+## 1.0.8
+* packコマンドでnuget.exeが見つからない場合のメッセージの判定条件を修正しました。
+
+## 1.0.7
+* packコマンドでnuget.exeが見つからない場合のメッセージを追加しました。
+
 ## 1.0.6
 * packコマンドでAuthors,Copyright等も正しくパッケージに設定するように改善しました。
 
