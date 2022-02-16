@@ -119,7 +119,7 @@ namespace NDExt.Services
             try {
                 ProcessUtil.Start("nuget.exe", nugetargs);
             }
-            catch (FileNotFoundException )
+            catch 
             {
                 throw new UserException("nuget.exe が見つからないため、パッケージ処理が実行できませんでした。https://www.nuget.org/downloads から nuget.exe をダウンロードし、適切なフォルダーに保存して、そのフォルダーを PATH 環境変数に追加してください。");
             }

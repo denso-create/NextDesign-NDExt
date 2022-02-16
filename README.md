@@ -1,6 +1,7 @@
 # NDExt 
 Next Designのエクステンションの開発を支援するコマンドラインツールです。
 
+- [必要環境](#必要環境)
 - [インストール方法](#インストール方法)
 - [利用方法](#利用方法)
 - [リリースノート](#リリースノート)
@@ -14,16 +15,15 @@ Next Designのエクステンションの開発を支援するコマンドライ
 > 本ツールはNext Design V2が対象としています。
 > Next Design V1.Xでは利用できません。
 
+## 必要環境
+* このプログラムを動作させるには [.NET Core 3.1のSdk](https://dotnet.microsoft.com/download/dotnet/3.1)およびnuget.exeのインストールが必要です。
+* nuget.exe は[公式サイト](https://www.nuget.org/downloads)からダウンロードし、適切なフォルダーに保存して、そのフォルダーを PATH 環境変数に追加してください（パスの設定が通っていないと正しく動作しません）。
 
 ## インストール方法
-* Next Designのエクステンション開発支援コマンドラインツールをグローバルツールとして[nuget.orgに公開](https://www.nuget.org/packages/NDExt/)しています。
-* コマンドプロンプトから次のように実行してインストールします。
+Next Designのエクステンション開発支援コマンドラインツールをグローバルツールとして[nuget.orgに公開](https://www.nuget.org/packages/NDExt/)しています。コマンドプロンプトから次のように実行してインストールします。
 ```
 > dotnet tool install --global NDExt 
-```
-
-* なお、このプログラムを動作させるには [.NET Core 3.1のSdk](https://dotnet.microsoft.com/download/dotnet/3.1)のインストールが必要です。
-  
+```  
 
 ## 利用方法
 Next Design のエクステンション開発を支援するコマンドラインツールです。次のような操作が簡単になります。

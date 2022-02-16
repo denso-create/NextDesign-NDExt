@@ -71,9 +71,15 @@ namespace NDExt.Commands
 
         #endregion
 
-
         #region パラメータ作成
 
+        /// <summary>
+        /// Argumentの追加
+        /// </summary>
+        /// <typeparam name="T">引数の型</typeparam>
+        /// <param name="name">引数名</param>
+        /// <param name="description">説明</param>
+        /// <returns></returns>
         protected Argument AddArgument<T>(string name,string description)
         {
             var arg = new Argument<T>(name)
@@ -84,6 +90,14 @@ namespace NDExt.Commands
             return arg;
         }
 
+        /// <summary>
+        /// Optionの追加
+        /// </summary>
+        /// <typeparam name="T">オプションの型</typeparam>
+        /// <param name="name">オプション名</param>
+        /// <param name="alias">エイリアス</param>
+        /// <param name="description">説明</param>
+        /// <returns></returns>
         protected Option AddOption<T>(string name,string alias, string description)
         {
             var opt = new Option<T>(name)
