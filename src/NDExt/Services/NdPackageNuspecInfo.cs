@@ -149,7 +149,7 @@ namespace NDExt.Services
             // エラーチェック
             if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルにパッケージId（`PackageId`）を指定して下さい。");
             if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルに作成者（`Authors`）を指定して下さい。");
-            if (string.IsNullOrEmpty(Description)) throw new UserException($"csprojファイルで説明（`Description`）が空です。説明の1行目がパッケージのタイトル、2行目以降にパッケージの説明となるように記載して下さい。");
+            if (string.IsNullOrEmpty(Description)) throw new UserException($"csprojファイルで説明（`Description`）を指定して下さい。");
             if (string.IsNullOrEmpty(Version)) throw new UserException($"csprojファイルでパッケージバージョンが指定されていません。バージョン（`Version`）を指定して下さい。");
 
         }
