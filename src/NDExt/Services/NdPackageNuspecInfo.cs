@@ -22,11 +22,6 @@ namespace NDExt.Services
         public string Id { get; set; }
 
         /// <summary>
-        /// タイトル
-        /// </summary>
-        public string Title { get; set; }
-
-        /// <summary>
         /// 説明
         /// </summary>
         public string Description { get; set; }
@@ -63,7 +58,6 @@ namespace NDExt.Services
   <metadata>
     <id>{Id}</id>
     <version>{Version}</version>
-    <title>{Title}</title>
     <description>{Description}</description>
     <authors>{Authors}</authors>
     <owners>{Authors}</owners>
@@ -99,7 +93,6 @@ namespace NDExt.Services
             projectXml.Load(projectFilePath);
             var projectNode = projectXml.SelectSingleNode("Project");
             var nuspec = new NdPackageNuspecInfo();
-            var nuspecDescription = "";
 
             foreach (XmlNode node in projectNode.ChildNodes)
             {
@@ -126,7 +119,7 @@ namespace NDExt.Services
                             break;
 
                         case "description":
-                            nuspecDescription = val;
+                            nuspec.Description = val;
                             break;
 
                         case "packageprojecturl":
@@ -143,10 +136,6 @@ namespace NDExt.Services
                     }
                 }
             }
-
-            // タイトルは説明の1行目、説明は2行目以降に分離
-            nuspec.Title = nuspecDescription.Split("\n").FirstOrDefault()?.Trim();
-            nuspec.Description = string.Join("\n", nuspecDescription.Split("\n").Skip(1))?.Trim();
 
             return nuspec;
         }
