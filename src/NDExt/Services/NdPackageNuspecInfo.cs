@@ -22,11 +22,6 @@ namespace NDExt.Services
         public string Id { get; set; }
 
         /// <summary>
-        /// タイトル
-        /// </summary>
-        public string Title { get; set; }
-
-        /// <summary>
         /// 説明
         /// </summary>
         public string Description { get; set; }
@@ -63,7 +58,6 @@ namespace NDExt.Services
   <metadata>
     <id>{Id}</id>
     <version>{Version}</version>
-    <title>{Title}</title>
     <description>{Description}</description>
     <authors>{Authors}</authors>
     <owners>{Authors}</owners>
@@ -99,7 +93,6 @@ namespace NDExt.Services
             projectXml.Load(projectFilePath);
             var projectNode = projectXml.SelectSingleNode("Project");
             var nuspec = new NdPackageNuspecInfo();
-            var nuspecDescription = "";
 
             foreach (XmlNode node in projectNode.ChildNodes)
             {
@@ -126,7 +119,7 @@ namespace NDExt.Services
                             break;
 
                         case "description":
-                            nuspecDescription = val;
+                            nuspec.Description = val;
                             break;
 
                         case "packageprojecturl":
@@ -144,10 +137,6 @@ namespace NDExt.Services
                 }
             }
 
-            // タイトルは説明の1行目、説明は2行目以降に分離
-            nuspec.Title = nuspecDescription.Split("\n").FirstOrDefault()?.Trim();
-            nuspec.Description = string.Join("\n", nuspecDescription.Split("\n").Skip(1))?.Trim();
-
             return nuspec;
         }
 
@@ -160,7 +149,7 @@ namespace NDExt.Services
             // エラーチェック
             if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルにパッケージId（`PackageId`）を指定して下さい。");
             if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルに作成者（`Authors`）を指定して下さい。");
-            if (string.IsNullOrEmpty(Description)) throw new UserException($"csprojファイルで説明（`Description`）が空です。説明の1行目がパッケージのタイトル、2行目以降にパッケージの説明となるように記載して下さい。");
+            if (string.IsNullOrEmpty(Description)) throw new UserException($"csprojファイルで説明（`Description`）を指定して下さい。");
             if (string.IsNullOrEmpty(Version)) throw new UserException($"csprojファイルでパッケージバージョンが指定されていません。バージョン（`Version`）を指定して下さい。");
 
         }
