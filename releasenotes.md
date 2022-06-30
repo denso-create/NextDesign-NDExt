@@ -1,5 +1,8 @@
 # NDExt Release Notes
 
+## 1.1.0
+* Next Design V2.0 Service Update1での変更に対応し、packコマンドでnuspecファイルのtitleタグを利用しないように修正しました。
+
 ## 1.0.8
 * packコマンドでnuget.exeが見つからない場合のメッセージの判定条件を修正しました。
 
