@@ -64,6 +64,8 @@ nuget.orgへの公開方法を説明します。
 
 ### ローカル環境からの公開
 
+> 原則、Github Actinsによる公開をして下さい。
+
 1. 事前準備
    * nuget.orgで `densocreate`の組織に所属するアカウントを登録して下さい。
    * 環境変数 `NUGET_APIKEY` をセットして下さい。
@@ -72,8 +74,8 @@ nuget.orgへの公開方法を説明します。
    * `publish.cmd`を実行して下さい。
 
 ### Github Actionsによる公開
-* [publish to nugetアクション](https://github.com/denso-create/NextDesign-NDExt/actions/workflows/publish.yml)を用いて下さい。
-
+* `publish`ブランチにマージすると自動的に https://www.nuget.org/packages/NDExt に公開されます。
+* [publish to nugetアクション](https://github.com/denso-create/NextDesign-NDExt/actions/workflows/publish.yml)で実行しています。
 
 ## 参照
 * プロジェクトテンプレート
