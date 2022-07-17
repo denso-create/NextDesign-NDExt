@@ -82,9 +82,6 @@ namespace NDExt.Services
             #region プロジェクトのビルド
             ConsoleUtil.WriteHeader("Build Project");
 
-            // 一旦削除しておく
-            FileUtil.DeleteDirectory(buildDir);
-
             // ビルドを実行
             ProcessUtil.Start("dotnet", $"publish {projectFilePath} -c {Request.BuildConfig}");
 
@@ -117,7 +114,7 @@ namespace NDExt.Services
             var nugetargs = @$"pack ""{nuspecFilePath}""  -PackagesDirectory ""{packageBuildDir}""  -NoPackageAnalysis -OutputDirectory ""{packageOutputDir}"" ";
             
             try {
-                ProcessUtil.Start("nuget.exe", nugetargs);
+                ProcessUtil.Start("dotnet.exe", nugetargs);
             }
             catch 
             {
