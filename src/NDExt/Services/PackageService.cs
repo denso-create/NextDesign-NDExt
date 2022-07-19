@@ -63,7 +63,7 @@ namespace NDExt.Services
             var buildPublishDir = Path.Combine(buildDir, "publish");
             var packageBuildDir = Path.Combine(buildDir, AppSettings.PackageBuildDir);
             var packageContentsDir = Path.Combine(projectDir, AppSettings.PackageContentsDir);
-            var packageOutputDir = Path.Combine(projectDir, Request.OutputDir);
+            var packageOutputDir = Path.Combine(Directory.GetCurrentDirectory(), Request.OutputDir);
 
             ConsoleUtil.WriteLine();
             ConsoleUtil.WriteLine();
@@ -114,7 +114,7 @@ namespace NDExt.Services
             var nugetargs = @$"pack ""{nuspecFilePath}""  -PackagesDirectory ""{packageBuildDir}""  -NoPackageAnalysis -OutputDirectory ""{packageOutputDir}"" ";
             
             try {
-                ProcessUtil.Start("dotnet.exe", nugetargs);
+                ProcessUtil.Start("nuget.exe", nugetargs);
             }
             catch 
             {
