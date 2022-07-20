@@ -63,7 +63,7 @@ namespace NDExt.Services
             var buildPublishDir = Path.Combine(buildDir, "publish");
             var packageBuildDir = Path.Combine(buildDir, AppSettings.PackageBuildDir);
             var packageContentsDir = Path.Combine(projectDir, AppSettings.PackageContentsDir);
-            var packageOutputDir = Path.Combine(projectDir, Request.OutputDir);
+            var packageOutputDir = Path.Combine(Directory.GetCurrentDirectory(), Request.OutputDir);
 
             ConsoleUtil.WriteLine();
             ConsoleUtil.WriteLine();
@@ -81,9 +81,6 @@ namespace NDExt.Services
 
             #region プロジェクトのビルド
             ConsoleUtil.WriteHeader("Build Project");
-
-            // 一旦削除しておく
-            FileUtil.DeleteDirectory(buildDir);
 
             // ビルドを実行
             ProcessUtil.Start("dotnet", $"publish {projectFilePath} -c {Request.BuildConfig}");
