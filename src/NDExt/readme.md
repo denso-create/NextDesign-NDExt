@@ -56,7 +56,7 @@ Commands:
 * エクステンションをパッケージ化するには次のように実行します。
 
 ```
-> ndext pack -c Release -v 2.0.0 
+> ndext pack -c Release -v 3.0 
 ```
 
 `pack`コマンドの実行に成功すると`ndpackages`フォルダにnupkgファイルが作成されます。
