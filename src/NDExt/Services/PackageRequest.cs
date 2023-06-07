@@ -21,11 +21,6 @@ namespace NDExt.Services
         public string BuildConfig { get; set; }
 
         /// <summary>
-        /// ターゲットのビルドフォルダ
-        /// </summary>
-        public string TargetFramweorkBuildFolder { get; set; } 
-
-        /// <summary>
         /// パッケージの出力先ディレクトリ名
         /// </summary>
         public string OutputDir { get; set; }
@@ -37,7 +32,7 @@ namespace NDExt.Services
 
         /// <summary>
         /// 対応するNDのバージョン
-        /// "2.0"など
+        /// "3.0"など
         /// </summary>
         public string NDVersion { get; set; } 
 
@@ -47,7 +42,6 @@ namespace NDExt.Services
         public void SetDefaults()
         {
             if (string.IsNullOrEmpty(NDVersion)) NDVersion = AppSettings.DefaultNdVersion;
-            if (string.IsNullOrEmpty(TargetFramweorkBuildFolder)) TargetFramweorkBuildFolder = AppSettings.DefaultTargetFramweorkBuildFolder;
             if (string.IsNullOrEmpty(BuildConfig)) BuildConfig = AppSettings.DefaultBuildTarget;
             if (string.IsNullOrEmpty(OutputDir)) OutputDir = AppSettings.PackageOutputDir;
             if (string.IsNullOrEmpty(TargetDir)) TargetDir = Env.CurrentDir;

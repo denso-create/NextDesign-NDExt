@@ -59,21 +59,15 @@ namespace NDExt.Services
             var projectFilePath = NDExtensionProjectFileUtil.GetProjectFilePath(projectDir);
             var projectFileName = Path.GetFileName(projectFilePath);
 
-            var buildDir = Path.Combine(projectDir, "bin", Request.BuildConfig, Request.TargetFramweorkBuildFolder);
-            var buildPublishDir = Path.Combine(buildDir, "publish");
-            var packageBuildDir = Path.Combine(buildDir, AppSettings.PackageBuildDir);
-            var packageContentsDir = Path.Combine(projectDir, AppSettings.PackageContentsDir);
-            var packageOutputDir = Path.Combine(Directory.GetCurrentDirectory(), Request.OutputDir);
-
             ConsoleUtil.WriteLine();
             ConsoleUtil.WriteLine();
             ConsoleUtil.WriteLine("==========> Packaging Project <=========================");
             ConsoleUtil.WriteLine($"[in] TargetProject: {projectFileName}");
             ConsoleUtil.WriteLine($"[in] Build Target: {Request.BuildConfig}");
             ConsoleUtil.WriteLine($"[in] ND Version: {Request.NDVersion}");
-            ConsoleUtil.WriteLine($"[in] Package Contents Dir: {packageContentsDir}");
-            ConsoleUtil.WriteLine($"[out] Package Output Dir: {packageOutputDir}");
-            ConsoleUtil.WriteLine($"[out] Package Copy Dir: {Request.CopyDir}");
+            //ConsoleUtil.WriteLine($"[in] Package Contents Dir: {packageContentsDir}");
+            //ConsoleUtil.WriteLine($"[out] Package Output Dir: {packageOutputDir}");
+            //ConsoleUtil.WriteLine($"[out] Package Copy Dir: {Request.CopyDir}");
             ConsoleUtil.WriteLine("========================================================");
             ConsoleUtil.WriteLine();
 
@@ -82,8 +76,24 @@ namespace NDExt.Services
             #region プロジェクトのビルド
             ConsoleUtil.WriteHeader("Build Project");
 
+            // projectDirのbinからpublishフォルダがあるディレクトリを取得
+            var binDir = Path.Combine(projectDir, "bin", Request.BuildConfig);
+
+            // binDirのディレクトリとそのサブディレクトリを削除
+            FileUtil.DeleteDirectory(binDir);
+
             // ビルドを実行
             ProcessUtil.Start("dotnet", $"publish {projectFilePath} -c {Request.BuildConfig}");
+
+            // publishフォルダがあるディレクトリを取得
+            var buildDir = Directory.EnumerateDirectories(binDir)
+                .Where(x => Directory.EnumerateDirectories(x).Any(y => y.Contains("publish")))
+                .LastOrDefault();
+
+            var buildPublishDir = Path.Combine(buildDir, "publish");
+            var packageBuildDir = Path.Combine(buildDir, AppSettings.PackageBuildDir);
+            var packageContentsDir = Path.Combine(projectDir, AppSettings.PackageContentsDir);
+            var packageOutputDir = Path.Combine(Directory.GetCurrentDirectory(), Request.OutputDir);
 
             #endregion
 
