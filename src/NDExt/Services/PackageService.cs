@@ -65,9 +65,6 @@ namespace NDExt.Services
             ConsoleUtil.WriteLine($"[in] TargetProject: {projectFileName}");
             ConsoleUtil.WriteLine($"[in] Build Target: {Request.BuildConfig}");
             ConsoleUtil.WriteLine($"[in] ND Version: {Request.NDVersion}");
-            //ConsoleUtil.WriteLine($"[in] Package Contents Dir: {packageContentsDir}");
-            //ConsoleUtil.WriteLine($"[out] Package Output Dir: {packageOutputDir}");
-            //ConsoleUtil.WriteLine($"[out] Package Copy Dir: {Request.CopyDir}");
             ConsoleUtil.WriteLine("========================================================");
             ConsoleUtil.WriteLine();
 
