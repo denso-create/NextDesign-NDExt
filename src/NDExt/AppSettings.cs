@@ -56,18 +56,13 @@ namespace NDExt
         public static string PackageBuildDir => GetValue("ndpackage");
 
         /// <summary>
-        /// ターゲットのビルドフォルダ
-        /// </summary>
-        public static string DefaultTargetFramweorkBuildFolder => GetValue("netcoreapp3.1");
-
-        /// <summary>
         /// デフォルトのビルドターゲット
         /// </summary>
-        public static string DefaultBuildTarget => GetValue("Debug");
+        public static string DefaultBuildTarget => GetValue("Release");
 
         /// <summary>
         /// デフォルトのNext Designのバージョン
         /// </summary>
-        public static string DefaultNdVersion => GetValue("2.0.0");
+        public static string DefaultNdVersion => GetValue("3.0");
     }
 }
