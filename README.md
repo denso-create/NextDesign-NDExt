@@ -16,7 +16,7 @@ Next Designのエクステンションの開発を支援するコマンドライ
 > Next Design V1.Xでは利用できません。
 
 ## 必要環境
-* このプログラムを動作させるには [.NET Core 3.1のSdk](https://dotnet.microsoft.com/download/dotnet/3.1)およびnuget.exeのインストールが必要です。
+* このプログラムを動作させるには [.NET6のSdk](https://dotnet.microsoft.com/ja-jp/download/dotnet/6.0)およびnuget.exeのインストールが必要です。
 * nuget.exe は[公式サイト](https://www.nuget.org/downloads)からダウンロードし、適切なフォルダーに保存して、そのフォルダーを PATH 環境変数に追加してください（パスの設定が通っていないと正しく動作しません）。
 
 ## インストール方法
