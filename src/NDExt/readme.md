@@ -2,7 +2,7 @@
 Next Designのエクステンションを開発するツールです。
 
 ## 必要環境
-* このプログラムを動作させるには [.NET Core 3.1のSdk](https://dotnet.microsoft.com/download/dotnet/3.1)およびnuget.exeのインストールが必要です。
+* このプログラムを動作させるには [.NET6のSdk](https://dotnet.microsoft.com/ja-jp/download/dotnet/6.0)およびnuget.exeのインストールが必要です。
 * nuget.exe は[公式サイト](https://www.nuget.org/downloads)からダウンロードし、適切なフォルダーに保存して、そのフォルダーを PATH 環境変数に追加してください（パスの設定が通っていないと正しく動作しません）。
 
 ## インストール方法
@@ -56,7 +56,7 @@ Commands:
 * エクステンションをパッケージ化するには次のように実行します。
 
 ```
-> ndext pack -c Release -v 2.0.0 
+> ndext pack -c Release -v 3.0 
 ```
 
 `pack`コマンドの実行に成功すると`ndpackages`フォルダにnupkgファイルが作成されます。
