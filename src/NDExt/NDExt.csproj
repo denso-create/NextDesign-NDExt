@@ -2,13 +2,13 @@
 
   <PropertyGroup>
 	<OutputType>Exe</OutputType>
-	<TargetFramework>net6.0</TargetFramework>
+	<TargetFramework>net8.0</TargetFramework>
 	<RootNamespace>NDExt</RootNamespace>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>ndext</ToolCommandName>
 	<Nullable>disable</Nullable>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.3.0</Version>
+    <Version>1.3.1</Version>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <Authors>DENSO CREATE INC.</Authors>
     <Company>DENSO CREATE INC.</Company>
