@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Text;
 using System.Xml;
 
@@ -12,39 +9,50 @@ namespace NDExt.Services
     /// </summary>
     public class NdPackageNuspecInfo
     {
-        public NdPackageNuspecInfo()
-        {
-        }
+        #region 構築・消滅
 
         /// <summary>
-        /// パッケージId
+        /// コンストラクタ。
+        /// </summary>
+        public NdPackageNuspecInfo() { }
+
+        #endregion
+
+        #region プロパティ
+
+        /// <summary>
+        /// パッケージIdを取得または設定します。
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 説明
+        /// 説明を取得または設定します。
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// Url
+        /// Urlを取得または設定します。
         /// </summary>
         public string ProjectUrl { get; set; }
 
         /// <summary>
-        /// バージョン
+        /// バージョンを取得または設定します。
         /// </summary>
         public string Version { get; set; }
 
         /// <summary>
-        /// Copyright
+        /// Copyrightを取得または設定します。
         /// </summary>
         public string Copyright { get; set; }
 
         /// <summary>
-        /// Authors
+        /// Authorsを取得または設定します。
         /// </summary>
         public string Authors { get; set; }
+
+        #endregion
+
+        #region 公開メソッド
 
         /// <summary>
         /// Xml文字列として戻します
@@ -53,7 +61,7 @@ namespace NDExt.Services
         public string ToXmlString()
         {
             var xml =
-@$"<?xml version=""1.0"" encoding=""utf - 8""?>
+                @$"<?xml version=""1.0"" encoding=""utf - 8""?>
   <package xmlns = ""http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd"" >
   <metadata>
     <id>{Id}</id>
@@ -127,11 +135,11 @@ namespace NDExt.Services
                             break;
 
                         case "authors":
-                            nuspec.Authors= val;
+                            nuspec.Authors = val;
                             break;
 
                         case "copyright":
-                            nuspec.Copyright= val;
+                            nuspec.Copyright = val;
                             break;
                     }
                 }
@@ -139,7 +147,6 @@ namespace NDExt.Services
 
             return nuspec;
         }
-
 
         /// <summary>
         /// エラーチェック
@@ -151,8 +158,8 @@ namespace NDExt.Services
             if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルに作成者（`Authors`）を指定して下さい。");
             if (string.IsNullOrEmpty(Description)) throw new UserException($"csprojファイルで説明（`Description`）を指定して下さい。");
             if (string.IsNullOrEmpty(Version)) throw new UserException($"csprojファイルでパッケージバージョンが指定されていません。バージョン（`Version`）を指定して下さい。");
-
         }
-    }
 
+        #endregion
+    }
 }

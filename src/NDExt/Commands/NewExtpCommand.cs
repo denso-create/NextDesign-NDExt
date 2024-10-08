@@ -1,20 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-namespace NDExt.Commands
+﻿namespace NDExt.Commands
 {
     /// <summary>
-    /// ExtensionPointsを利用した新規作成コマンド
+    /// ExtensionPointsを利用したプロジェクトの新規作成を実行するコマンドクラスです。
     /// </summary>
-    public class NewExtpommand : NewCommandBase
+    public class NewExtpCommand : NewCommandBase
     {
-        public NewExtpommand() : base("new-extp", "現在のフォルダにExtensionPointsライブラリを用いたエクステンションのプロジェクトを作成します。") { }
+        #region 構築・消滅
 
+        /// <summary>
+        /// コンストラクタ。
+        /// </summary>
+        public NewExtpCommand() : base("new-extp", "現在のフォルダにExtensionPointsライブラリを用いたエクステンションのプロジェクトを作成します。") { }
+
+        #endregion
+
+        #region プロパティ
+
+        /// <inheritdoc />
         protected override string TemplateName => "ndextp";
 
+        /// <inheritdoc />
         protected override string TemplateDescription => "ExtensionPointsライブラリを用いたエクステンションです（推奨）。";
+
+        #endregion
     }
 }

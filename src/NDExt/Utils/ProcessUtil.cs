@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 
 namespace NDExt.Utils
 {
@@ -10,23 +7,25 @@ namespace NDExt.Utils
     /// </summary>
     internal static class ProcessUtil
     {
+        #region 公開メソッド
+
         /// <summary>
         /// プロセスを実行します。
         /// </summary>
         /// <param name="filename"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public static int Start(string filename,string args)
+        public static int Start(string filename, string args)
         {
-            //ConsoleUtil.WriteLine($"Command: {filename} {args}");
+            // ConsoleUtil.WriteLine($"Command: {filename} {args}");
 
             // git pull実行
             var startInfo = new ProcessStartInfo()
             {
                 FileName = filename,
                 Arguments = args,
-                //CreateNoWindow = false,
-                //UseShellExecute = false,
+                // CreateNoWindow = false,
+                // UseShellExecute = false,
             };
 
             var process = Process.Start(startInfo);
@@ -40,5 +39,7 @@ namespace NDExt.Utils
 
             return process.ExitCode;
         }
+
+        #endregion
     }
 }

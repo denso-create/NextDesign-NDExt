@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace NDExt.Utils
 {
+    /// <summary>
+    /// ファイル処理のユーティリティです。
+    /// </summary>
     public static class FileUtil
     {
+        #region 公開メソッド
+
         /// <summary>
         /// ディレクトリを削除して作成しなおします。
         /// </summary>
@@ -24,11 +27,13 @@ namespace NDExt.Utils
         /// <param name="path"></param>
         public static void DeleteFile(string path)
         {
-            if ( File.Exists(path))
+            if (File.Exists(path))
             {
-                try {
+                try
+                {
                     File.Delete(path);
-                } catch 
+                }
+                catch
                 {
                     // do nothing
                 }
@@ -57,11 +62,11 @@ namespace NDExt.Utils
         /// <param name="source"></param>
         /// <param name="searchPattern"></param>
         /// <param name="dest"></param>
-        public static void CopyFiles(string source,string searchPattern,string dest)
+        public static void CopyFiles(string source, string searchPattern, string dest)
         {
             var files = Directory.EnumerateFiles(source, searchPattern);
 
-            foreach ( var file in files)
+            foreach (var file in files)
             {
                 var destFileName = Path.GetFileName(file);
 
@@ -69,7 +74,7 @@ namespace NDExt.Utils
                 {
                     File.Copy(file, Path.Combine(dest, destFileName), true);
                 }
-                catch 
+                catch
                 {
                     // do nothing
                 }
@@ -162,6 +167,6 @@ namespace NDExt.Utils
             }
         }
 
-
+        #endregion
     }
 }

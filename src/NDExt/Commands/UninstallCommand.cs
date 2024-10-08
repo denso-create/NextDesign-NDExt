@@ -1,33 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.CommandLine;
+﻿using NDExt.Utils;
+using System;
 using System.CommandLine.Invocation;
-using System.IO;
-using NDExt.Utils;
 
 namespace NDExt.Commands
 {
     /// <summary>
-    /// テンプレートのアンインストール
+    /// テンプレートのアンインストールを実行するコマンドクラスです。
     /// </summary>
     public class UninstallCommand : CommandBase
     {
+        #region 構築・消滅
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public UninstallCommand() : base("uninstall","プロジェクトのテンプレートをアンインストールします。")
+        public UninstallCommand() : base("uninstall", "プロジェクトのテンプレートをアンインストールします。")
         {
             this.Handler = CommandHandler.Create(Handle);
         }
 
+        #endregion
+
+        #region 公開メソッド
+
         /// <summary>
-        /// 実行
+        /// アンインストール処理を実行するハンドラメソッド。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>終了コード。成功時は<see cref="CommandBase.Success"/>、失敗時は<see cref="CommandBase.Fail"/>を返します。</returns>
         public int Handle()
         {
-
             try
             {
                 WriteLine("テンプレートをアンインストールしています...");
@@ -36,20 +37,22 @@ namespace NDExt.Commands
                 var templates = ProjectTemplateUtil.GetTemplatePackages();
                 foreach (var template in templates)
                 {
-                    ExcecuteProcess("dotnet", @$"new -u ""{template}""");
+                    ExecuteProcess("dotnet", @$"new -u ""{template}""");
                 }
 
                 WriteLine("完了しました。");
                 WriteLine("");
 
-                return cSuccess;
+                return Success;
 
             }
             catch (Exception ex)
             {
                 WriteError(ex);
-                return cFail;
-            }        
+                return Fail;
+            }
         }
+
+        #endregion
     }
 }

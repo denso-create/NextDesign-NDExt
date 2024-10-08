@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace NDExt.Utils
 {
@@ -10,6 +7,8 @@ namespace NDExt.Utils
     /// </summary>
     internal static class ProjectTemplateUtil
     {
+        #region 公開メソッド
+
         /// <summary>
         /// プロジェクトテンプレートのパッケージファイル
         /// </summary>
@@ -20,5 +19,6 @@ namespace NDExt.Utils
             return packages;
         }
 
+        #endregion
     }
 }

@@ -1,39 +1,57 @@
 ﻿using NDExt.Utils;
 using System;
-using System.Collections.Generic;
-using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace NDExt.Commands
 {
     /// <summary>
-    /// 新規コマンドのベース
+    /// エクステンションプロジェクトの新規作成を実行するコマンドのベースクラスです。
     /// </summary>
     public abstract class NewCommandBase : CommandBase
     {
+        #region 構築・消滅
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="name"></param>
         /// <param name="description"></param>
-        public NewCommandBase(string name,string description) : base(name,description)
+        protected NewCommandBase(string name, string description) : base(name, description)
         {
-            AddArgument<string>("name","作成プロジェクト名を指定して下さい");
+            AddArgument<string>("name", "作成プロジェクト名を指定して下さい");
 
             Handler = CommandHandler.Create<string>(Handle);
         }
 
+        #endregion
+
+        #region プロパティ
+
         /// <summary>
-        /// ハンドラ
+        /// プロジェクトテンプレート名を取得します。
+        /// </summary>
+        protected abstract string TemplateName { get; }
+
+        /// <summary>
+        /// プロジェクトテンプレートの説明を取得します。
+        /// </summary>
+        protected abstract string TemplateDescription { get; }
+
+        #endregion
+
+        #region 内部メソッド
+
+        /// <summary>
+        /// プロジェクトの作成処理を実行するハンドラメソッド。
         /// </summary>
         /// <param name="name">作成プロジェクト名</param>
-        /// <returns>終了コード</returns>
+        /// <returns>終了コード。成功時は<see cref="CommandBase.Success"/>、失敗時は<see cref="CommandBase.Fail"/>を返します。</returns>
         private int Handle(string name)
         {
-            try {
+            try
+            {
                 WriteLine($"# ---------------------------------------------------------------");
                 WriteLine($"# Creating Next Design Extension Solution & Project");
                 WriteLine($"# ");
@@ -51,31 +69,21 @@ namespace NDExt.Commands
                 ProcessUtil.Start("dotnet", $@"sln ""{slnFile}"" add ""{projFile}"" ");
 
                 WriteLine("完了しました。");
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 WriteError(ex);
-                return cFail;
+                return Fail;
             }
 
-            return cSuccess;
+            return Success;
         }
-
-        /// <summary>
-        /// プロジェクトテンプレート名
-        /// </summary>
-        protected abstract string TemplateName { get; }
-
-        /// <summary>
-        /// プロジェクトテンプレートの説明
-        /// </summary>
-        protected abstract string TemplateDescription { get; }
-
 
         /// <summary>
         /// ソリューションファイルを取得または作成します
         /// </summary>
         /// <param name="projectName">作成するプロジェクト名</param>
-        /// <returns></returns>
+        /// <returns>ソリューションファイルのパス。</returns>
         protected string CreateOrGetSolution(string projectName)
         {
             var slnFile = Directory.EnumerateFiles(CurrentDir, "*.sln").FirstOrDefault();
@@ -90,7 +98,7 @@ namespace NDExt.Commands
             WriteLine($"ソリューションファイルを作成します。 {slnFile}");
 
             // ソリューションを作成する
-            ExcecuteProcess("dotnet", $"new sln -n {projectName}");
+            ExecuteProcess("dotnet", $"new sln -n {projectName}");
 
             return slnFile;
         }
@@ -100,36 +108,36 @@ namespace NDExt.Commands
         /// </summary>
         /// <param name="projectName">作成するプロジェクト名</param>
         /// <param name="templateName">作成時に利用するプロジェクトテンプレート名</param>
-        /// <returns></returns>
-        protected string  CreateProject(string projectName,string templateName)
+        /// <returns>プロジェクトのパス。</returns>
+        protected string CreateProject(string projectName, string templateName)
         {
             var projectDir = Path.Combine(CurrentDir, projectName);
 
             // ディレクトリ作成
-            if ( !Directory.Exists(projectDir))
+            if (!Directory.Exists(projectDir))
             {
                 Directory.CreateDirectory(projectDir);
             }
 
-            if ( NDExtensionProjectFileUtil.ProjectFileExists(projectDir) )
+            if (NDExtensionProjectFileUtil.ProjectFileExists(projectDir))
             {
                 throw new UserException("プロジェクトファイルがすでに存在しているため処理を中止します。");
             }
 
             // プロジェクトを作成
-            ExcecuteProcess("dotnet", @$"new {templateName} -n {projectName} -o ""{projectDir}"" --force");
+            ExecuteProcess("dotnet", @$"new {templateName} -n {projectName} -o ""{projectDir}"" --force");
             var projFile = NDExtensionProjectFileUtil.GetProjectFilePath(projectDir);
 
-            if ( string.IsNullOrEmpty(projFile))
+            if (string.IsNullOrEmpty(projFile))
             {
                 throw new UserException("プロジェクトファイルの作成に失敗しました。");
             }
-            
+
             WriteLine($"{projectDir}に `{Path.GetFileName(projFile)}` を作成しました。");
 
             return projFile;
         }
 
-
+        #endregion
     }
 }

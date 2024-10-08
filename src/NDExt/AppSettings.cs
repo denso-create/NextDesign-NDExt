@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace NDExt
 {
@@ -12,33 +9,16 @@ namespace NDExt
     /// </summary>
     public static class AppSettings
     {
-        private static IConfigurationRoot Config;
+        #region フィールド
 
         /// <summary>
-        /// Configオブジェクトで初期化
+        /// コンフィグ情報。
         /// </summary>
-        /// <param name="config"></param>
-        public static void Initialize(IConfigurationRoot config)
-        {
-            Config = config;
-        }
+        private static IConfigurationRoot s_Config;
 
-        
-        /// <summary>
-        /// 値を取得します
-        /// </summary>
-        /// <param name="defaultValue">エントリがない場合のデフォルト値</param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        private static string GetValue(string defaultValue,[CallerMemberName] string name=null)
-        {
-            var val = Config[name];
-            if (string.IsNullOrEmpty(val))
-            {
-                return defaultValue;
-            }
-            return val;
-        }
+        #endregion
+
+        #region プロパティ
 
         /// <summary>
         /// パッケージのデフォルト出力フォルダ名
@@ -64,5 +44,40 @@ namespace NDExt
         /// デフォルトのNext Designのバージョン
         /// </summary>
         public static string DefaultNdVersion => GetValue("3.0");
+
+        #endregion
+
+        #region 公開メソッド
+
+        /// <summary>
+        /// Configオブジェクトで初期化
+        /// </summary>
+        /// <param name="config"></param>
+        public static void Initialize(IConfigurationRoot config)
+        {
+            s_Config = config;
+        }
+
+        #endregion
+
+        #region 内部メソッド
+
+        /// <summary>
+        /// 値を取得します
+        /// </summary>
+        /// <param name="defaultValue">エントリがない場合のデフォルト値</param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        private static string GetValue(string defaultValue, [CallerMemberName] string name = null)
+        {
+            var val = s_Config[name];
+            if (string.IsNullOrEmpty(val))
+            {
+                return defaultValue;
+            }
+            return val;
+        }
+
+        #endregion
     }
 }

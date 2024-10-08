@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace NDExt.Utils
 {
+    /// <summary>
+    /// NextDesignのエクステンションのプロジェクトに関するユーティリティです。
+    /// </summary>
     public class NDExtensionProjectFileUtil
     {
+        #region 公開メソッド
+
         /// <summary>
         /// エクステンションのプロジェクトファイルのあるディレクトリを探します。
         /// </summary>
-        /// <param name="targetDir"></param>
-        /// <returns></returns>
+        /// <param name="targetDir">探索対象のルートディレクトリのパス。</param>
+        /// <returns>エクステンションのプロジェクトファイルのあるディレクトリの列挙。</returns>
         public static IEnumerable<string> FindExtensionProjectDirs(string targetDir)
         {
             var ret = new HashSet<string>();
@@ -33,7 +36,6 @@ namespace NDExt.Utils
             return ret;
         }
 
-
         /// <summary>
         /// プロジェクトファイルのパスを取得します
         /// </summary>
@@ -45,18 +47,16 @@ namespace NDExt.Utils
             return csProjFile;
         }
 
-
         /// <summary>
-        /// プロジェクトファイルが存在するか
+        /// プロジェクトファイルが存在するかを確認します。
         /// </summary>
         /// <param name="projectDir"></param>
-        /// <returns></returns>
+        /// <returns>プロジェクトファイルが存在するか。存在する場合はtrue、それ以外はfalseです。</returns>
         public static bool ProjectFileExists(string projectDir)
         {
             var csProjFile = GetProjectFilePath(projectDir);
             return !string.IsNullOrEmpty(csProjFile);
         }
-
 
         /// <summary>
         /// NDのエクステンションのプログラムを指定フォルダにコピーします。
@@ -64,12 +64,14 @@ namespace NDExt.Utils
         /// </summary>
         /// <param name="sourceDir"></param>
         /// <param name="destDir"></param>
-        public static void CopyExtensionFolder(string sourceDir,string destDir)
+        public static void CopyExtensionFolder(string sourceDir, string destDir)
         {
             FileUtil.CopyDirectory(sourceDir, destDir);
 
             FileUtil.DeleteFile(Path.Combine(destDir, "NextDesign.Core.dll"));
             FileUtil.DeleteFile(Path.Combine(destDir, "NextDesign.Desktop.dll"));
         }
+
+        #endregion
     }
 }

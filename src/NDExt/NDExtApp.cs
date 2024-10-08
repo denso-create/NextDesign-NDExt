@@ -2,11 +2,8 @@
 using NDExt.Commands;
 using NDExt.Utils;
 using System;
-using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Builder;
 using System.Reflection;
-using System.Text;
 
 namespace NDExt
 {
@@ -15,6 +12,8 @@ namespace NDExt
     /// </summary>
     internal class NDExtApp
     {
+        #region 公開メソッド
+
         /// <summary>
         /// 開始
         /// </summary>
@@ -37,7 +36,7 @@ namespace NDExt
                 // サブコマンドの登録
                 rootCommand.AddCommand(new InstallCommand());
                 rootCommand.AddCommand(new NewCommand());
-                rootCommand.AddCommand(new NewExtpommand());
+                rootCommand.AddCommand(new NewExtpCommand());
                 rootCommand.AddCommand(new PackCommand());
                 rootCommand.AddCommand(new UninstallCommand());
 
@@ -54,6 +53,9 @@ namespace NDExt
             return 0;
         }
 
+        #endregion
+
+        #region 内部メソッド
 
         /// <summary>
         /// 設定の初期化
@@ -84,6 +86,6 @@ namespace NDExt
             ConsoleUtil.WriteLine($"# ===============================================================");
         }
 
-
+        #endregion
     }
 }

@@ -1,23 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.CommandLine;
+﻿using NDExt.Utils;
+using System;
 using System.CommandLine.Invocation;
-using System.IO;
-using NDExt.Utils;
 
 namespace NDExt.Commands
 {
     /// <summary>
-    /// テンプレートのインストール
+    /// テンプレートのインストールを実行するコマンドクラスです。
     /// </summary>
     public class InstallCommand : CommandBase
     {
+        #region 構築・消滅
+
+        /// <summary>
+        /// コンストラクタ。
+        /// </summary>
         public InstallCommand() : base("install", "プロジェクトのテンプレートをインストールします。最初に実行して下さい。")
         {
             Handler = CommandHandler.Create(Handle);
         }
 
+        #endregion
+
+        #region 内部メソッド
+
+        /// <summary>
+        /// インストール処理を実行するハンドラメソッド。
+        /// </summary>
+        /// <returns>終了コード。成功時は<see cref="CommandBase.Success"/>、失敗時は<see cref="CommandBase.Fail"/>を返します。</returns>
         private int Handle()
         {
             try
@@ -28,7 +37,7 @@ namespace NDExt.Commands
                 var templates = ProjectTemplateUtil.GetTemplatePackages();
                 foreach (var template in templates)
                 {
-                    ExcecuteProcess("dotnet", @$"new -i ""{template}""");
+                    ExecuteProcess("dotnet", @$"new -i ""{template}""");
                 }
 
                 WriteLine("完了しました。");
@@ -36,13 +45,16 @@ namespace NDExt.Commands
                 WriteLine("* `dotnet new`コマンドでもエクステンションが作成できます。");
                 WriteLine("");
 
-                return cSuccess;
+                return Success;
 
-            } catch ( Exception ex)
+            }
+            catch (Exception ex)
             {
                 WriteError(ex);
-                return cFail;
+                return Fail;
             }
         }
+
+        #endregion
     }
 }

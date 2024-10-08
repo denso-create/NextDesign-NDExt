@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Text;
 
 namespace NDExt.Utils
 {
@@ -11,6 +9,8 @@ namespace NDExt.Utils
     /// </summary>
     internal static class Env
     {
+        #region プロパティ
+
         /// <summary>
         /// アプリケーションのベースディレクトリを取得します
         /// </summary>
@@ -27,13 +27,8 @@ namespace NDExt.Utils
         /// <summary>
         /// 現在のディレクトリ
         /// </summary>
-        public static string CurrentDir
-        {
-            get
-            {
-                return Environment.CurrentDirectory;
-            }
-        }
+        public static string CurrentDir => Environment.CurrentDirectory;
 
+        #endregion
     }
 }

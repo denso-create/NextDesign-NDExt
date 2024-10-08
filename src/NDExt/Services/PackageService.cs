@@ -1,10 +1,6 @@
 ﻿using NDExt.Utils;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Xml;
 
 namespace NDExt.Services
 {
@@ -14,7 +10,8 @@ namespace NDExt.Services
 
     public class PackageService
     {
-        #region Privateなメンバ
+        #region フィールド
+
         /// <summary>
         /// リクエスト情報
         /// </summary>
@@ -23,6 +20,7 @@ namespace NDExt.Services
         #endregion
 
         #region 公開メソッド
+
         /// <summary>
         /// パッケージ化
         /// </summary>
@@ -44,8 +42,8 @@ namespace NDExt.Services
                 PackageProject(projectDir);
             }
         }
-        #endregion
 
+        #endregion
 
         #region 内部メソッド
 
@@ -56,6 +54,7 @@ namespace NDExt.Services
         private void PackageProject(string projectDir)
         {
             #region ディレクトリ
+
             var projectFilePath = NDExtensionProjectFileUtil.GetProjectFilePath(projectDir);
             var projectFileName = Path.GetFileName(projectFilePath);
 
@@ -71,6 +70,7 @@ namespace NDExt.Services
             #endregion
 
             #region プロジェクトのビルド
+
             ConsoleUtil.WriteHeader("Build Project");
 
             // projectDirのbinからpublishフォルダがあるディレクトリを取得
@@ -94,8 +94,8 @@ namespace NDExt.Services
 
             #endregion
 
-
             #region パッケージ化
+
             ConsoleUtil.WriteHeader("Packaging");
 
             // パッケージのビルド用フォルダを作成（存在していれば削除して作成）
@@ -118,22 +118,22 @@ namespace NDExt.Services
             }
 
             // パッケージの実行
-            var nugetargs = @$"pack ""{nuspecFilePath}""  -PackagesDirectory ""{packageBuildDir}""  -NoPackageAnalysis -OutputDirectory ""{packageOutputDir}"" ";
-            
-            try {
-                ProcessUtil.Start("nuget.exe", nugetargs);
+            var nugetArgs = @$"pack ""{nuspecFilePath}""  -PackagesDirectory ""{packageBuildDir}""  -NoPackageAnalysis -OutputDirectory ""{packageOutputDir}"" ";
+
+            try
+            {
+                ProcessUtil.Start("nuget.exe", nugetArgs);
             }
-            catch 
+            catch
             {
                 throw new UserException("nuget.exe が見つからないため、パッケージ処理が実行できませんでした。https://www.nuget.org/downloads から nuget.exe をダウンロードし、適切なフォルダーに保存して、そのフォルダーを PATH 環境変数に追加してください。");
             }
 
             #endregion
 
-
             #region パッケージをフォルダにコピー
 
-            if ( !string.IsNullOrEmpty(Request.CopyDir))
+            if (!string.IsNullOrEmpty(Request.CopyDir))
             {
                 ConsoleUtil.WriteHeader("Copy nupkg");
                 FileUtil.CopyFiles(packageOutputDir, "*.nupkg", Request.CopyDir);
@@ -148,6 +148,5 @@ namespace NDExt.Services
         }
 
         #endregion
-
     }
 }

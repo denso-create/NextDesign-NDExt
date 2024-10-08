@@ -1,9 +1,4 @@
-﻿using NDExt.Commands;
-using System;
-using System.CommandLine;
-using System.Reflection;
-
-namespace NDExt
+﻿namespace NDExt
 {
     /// <summary>
     /// エントリポイント
