@@ -37,16 +37,15 @@ namespace NDExt.Commands
                 var templates = ProjectTemplateUtil.GetTemplatePackages();
                 foreach (var template in templates)
                 {
-                    ExecuteProcess("dotnet", @$"new -i ""{template}""");
+                    ExecuteProcess("dotnet", @$"new install ""{template}""");
                 }
 
                 WriteLine("完了しました。");
-                WriteLine("* `ndext new` `ndext new-*`  コマンドでNext Designのエクステンションが作成できます。");
+                WriteLine("* `ndext new` `ndext new-*` コマンドでNext Designのエクステンションが作成できます。");
                 WriteLine("* `dotnet new`コマンドでもエクステンションが作成できます。");
                 WriteLine("");
 
                 return Success;
-
             }
             catch (Exception ex)
             {
