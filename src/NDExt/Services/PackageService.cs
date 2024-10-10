@@ -84,8 +84,7 @@ namespace NDExt.Services
 
             // publishフォルダがあるディレクトリを取得
             var buildDir = Directory.EnumerateDirectories(binDir)
-                .Where(x => Directory.EnumerateDirectories(x).Any(y => y.Contains("publish")))
-                .LastOrDefault();
+                .LastOrDefault(x => Directory.EnumerateDirectories(x).Any(y => y.Contains("publish")));
 
             var buildPublishDir = Path.Combine(buildDir, "publish");
             var packageBuildDir = Path.Combine(buildDir, AppSettings.PackageBuildDir);
