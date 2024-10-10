@@ -79,6 +79,42 @@ namespace NDExt.Properties {
         }
         
         /// <summary>
+        ///   現在のフォルダにNext Design V3.1向けのエクステンションのプロジェクトを作成します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionNew31Command0 {
+            get {
+                return ResourceManager.GetString("DescriptionNew31Command0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   現在のフォルダにExtensionPointsライブラリを用いたNext Design V3.1向けのエクステンションのプロジェクトを作成します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionNew31ExtpCommand0 {
+            get {
+                return ResourceManager.GetString("DescriptionNew31ExtpCommand0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   現在のフォルダにNext Design V4.0向けのエクステンションのプロジェクトを作成します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionNew4Command0 {
+            get {
+                return ResourceManager.GetString("DescriptionNew4Command0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   現在のフォルダにExtensionPointsライブラリを用いたNext Design V4.0向けのエクステンションのプロジェクトを作成します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionNew4ExtpCommand0 {
+            get {
+                return ResourceManager.GetString("DescriptionNew4ExtpCommand0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   現在のフォルダに最新のNext Design向けのエクステンションのプロジェクトを作成します。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DescriptionNewCommand0 {
@@ -160,20 +196,38 @@ namespace NDExt.Properties {
         }
         
         /// <summary>
+        ///   Next Design V3.1向けのExtensionPointsライブラリを用いたエクステンションです（推奨）。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionTemplateExtpStandardExtensionV31_0 {
+            get {
+                return ResourceManager.GetString("DescriptionTemplateExtpStandardExtensionV31_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Next Design V4.0向けのExtensionPointsライブラリを用いたエクステンションです（推奨）。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string DescriptionTemplateExtpStandardExtensionV40_0 {
+        internal static string DescriptionTemplateExtpStandardExtensionV4_0 {
             get {
-                return ResourceManager.GetString("DescriptionTemplateExtpStandardExtensionV40_0", resourceCulture);
+                return ResourceManager.GetString("DescriptionTemplateExtpStandardExtensionV4_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Next Design V3.1向けの標準のエクステンションです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionTemplateStandardExtensionV31_0 {
+            get {
+                return ResourceManager.GetString("DescriptionTemplateStandardExtensionV31_0", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Next Design V4.0向けの標準のエクステンションです。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string DescriptionTemplateStandardExtensionV40_0 {
+        internal static string DescriptionTemplateStandardExtensionV4_0 {
             get {
-                return ResourceManager.GetString("DescriptionTemplateStandardExtensionV40_0", resourceCulture);
+                return ResourceManager.GetString("DescriptionTemplateStandardExtensionV4_0", resourceCulture);
             }
         }
         

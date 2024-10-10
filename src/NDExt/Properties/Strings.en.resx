@@ -179,13 +179,13 @@
   <data name="DescriptionNewCommand0" xml:space="preserve">
     <value>Creates a new extension project for the latest version of Next Design in the current folder.</value>
   </data>
-  <data name="DescriptionTemplateStandardExtensionV40_0" xml:space="preserve">
+  <data name="DescriptionTemplateStandardExtensionV4_0" xml:space="preserve">
     <value>This is the standard extension for Next Design V4.0.</value>
   </data>
   <data name="DescriptionNewExtpCommand0" xml:space="preserve">
     <value>Creates a new extension project using the ExtensionPoints library for the latest version of Next Design in the current folder.</value>
   </data>
-  <data name="DescriptionTemplateExtpStandardExtensionV40_0" xml:space="preserve">
+  <data name="DescriptionTemplateExtpStandardExtensionV4_0" xml:space="preserve">
     <value>This is an extension using the ExtensionPoints library for Next Design V4.0 (recommended).</value>
   </data>
   <data name="DescriptionNewCommandProjectName0" xml:space="preserve">
@@ -245,5 +245,23 @@ Template Description: '{2}'</value>
   </data>
   <data name="DescriptionCreateExtensionUtility0" xml:space="preserve">
     <value>This is a utility for creating extensions for Next Design.</value>
+  </data>
+  <data name="DescriptionNew31Command0" xml:space="preserve">
+    <value>Creates a new extension project for Next Design V3.1 in the current folder.</value>
+  </data>
+  <data name="DescriptionNew4Command0" xml:space="preserve">
+    <value>Creates a new extension project for Next Design V4.0 in the current folder.</value>
+  </data>
+  <data name="DescriptionNew4ExtpCommand0" xml:space="preserve">
+    <value>Creates a new extension project using the ExtensionPoints library for Next Design V4.0 in the current folder.</value>
+  </data>
+  <data name="DescriptionNew31ExtpCommand0" xml:space="preserve">
+    <value>Creates a new extension project using the ExtensionPoints library for Next Design V3.1 in the current folder.</value>
+  </data>
+  <data name="DescriptionTemplateExtpStandardExtensionV31_0" xml:space="preserve">
+    <value>This is an extension using the ExtensionPoints library for Next Design V3.1 (recommended).</value>
+  </data>
+  <data name="DescriptionTemplateStandardExtensionV31_0" xml:space="preserve">
+    <value>This is the standard extension for Next Design V3.1.</value>
   </data>
 </root>
