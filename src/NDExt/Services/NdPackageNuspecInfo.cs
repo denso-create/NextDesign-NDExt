@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using NDExt.Properties;
+using System.IO;
 using System.Text;
 using System.Xml;
 
@@ -126,7 +127,6 @@ namespace NDExt.Services
         {
             var xml = ToXmlString();
             File.WriteAllText(filepath, xml, Encoding.UTF8);
-
         }
 
         /// <summary>
@@ -165,10 +165,10 @@ namespace NDExt.Services
         public void CheckErrors()
         {
             // エラーチェック
-            if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルにパッケージId（`PackageId`）を指定して下さい。");
-            if (string.IsNullOrEmpty(Authors)) throw new UserException($"csprojファイルに作成者（`Authors`）を指定して下さい。");
-            if (string.IsNullOrEmpty(Description)) throw new UserException($"csprojファイルで説明（`Description`）を指定して下さい。");
-            if (string.IsNullOrEmpty(Version)) throw new UserException($"csprojファイルでパッケージバージョンが指定されていません。バージョン（`Version`）を指定して下さい。");
+            if (string.IsNullOrEmpty(Id)) throw new UserException(Strings.ErrorPackageIdNotSpecified0);
+            if (string.IsNullOrEmpty(Authors)) throw new UserException(Strings.ErrorAuthorsNotSpecified0);
+            if (string.IsNullOrEmpty(Description)) throw new UserException(Strings.ErrorDescriptionNotSpecified0);
+            if (string.IsNullOrEmpty(Version)) throw new UserException(Strings.ErrorVersionNotSpecified0);
         }
 
         #endregion

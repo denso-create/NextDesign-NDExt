@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using NDExt.Commands;
+using NDExt.Properties;
 using NDExt.Utils;
 using System;
 using System.CommandLine;
@@ -45,7 +46,7 @@ namespace NDExt
 
                 var rootCommand = new RootCommand(c_AppName)
                 {
-                    Description = "Next Designのエクステンションを作成できるユーティリティです。"
+                    Description = Strings.DescriptionCreateExtensionUtility0
                 };
 
                 // サブコマンドの登録
@@ -93,7 +94,7 @@ namespace NDExt
         private void WriteAppHeader()
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version;
-            ConsoleUtil.WriteCommandHeader($"Next Design Extension Utility - Version {version}");
+            ConsoleUtil.WriteCommandHeader(string.Format(Strings.TitleAppHeaderVersionInfo1, version));
         }
 
         #endregion

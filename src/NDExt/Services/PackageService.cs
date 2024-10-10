@@ -1,4 +1,5 @@
-﻿using NDExt.Utils;
+﻿using NDExt.Properties;
+using NDExt.Utils;
 using System.IO;
 using System.Linq;
 
@@ -48,7 +49,7 @@ namespace NDExt.Services
             // プロジェクトファイルが存在しない
             if (!projectDirs.Any())
             {
-                throw new UserException($"エクステンションのプロジェクトファイル(csproj)が見つかりませんでした。");
+                throw new UserException(Strings.ErrorProjectFileNotFound0);
             }
 
             // 見つかったプロジェクトファイルに対して実行
@@ -75,18 +76,14 @@ namespace NDExt.Services
 
             ConsoleUtil.WriteLine();
             ConsoleUtil.WriteLine();
-            ConsoleUtil.WriteLine("==========> Packaging Project <=========================");
-            ConsoleUtil.WriteLine($"[in] TargetProject: {projectFileName}");
-            ConsoleUtil.WriteLine($"[in] Build Target: {Request.BuildConfig}");
-            ConsoleUtil.WriteLine($"[in] ND Version: {Request.NDVersion}");
-            ConsoleUtil.WriteLine("========================================================");
+            ConsoleUtil.WriteLine(string.Format(Strings.StatusPackagingProject3, projectFileName, Request.BuildConfig, Request.NDVersion));
             ConsoleUtil.WriteLine();
 
             #endregion
 
             #region プロジェクトのビルド
 
-            ConsoleUtil.WriteHeader("Build Project");
+            ConsoleUtil.WriteHeader(Strings.HeaderBuildProject0);
 
             // projectDirのbinからpublishフォルダがあるディレクトリを取得
             var binDir = Path.Combine(projectDir, "bin", Request.BuildConfig);
@@ -110,7 +107,7 @@ namespace NDExt.Services
 
             #region パッケージ化
 
-            ConsoleUtil.WriteHeader("Packaging");
+            ConsoleUtil.WriteHeader(Strings.HeaderPackaging0);
 
             // パッケージのビルド用フォルダを作成（存在していれば削除して作成）
             FileUtil.RecreateDirectory(packageBuildDir);
@@ -140,7 +137,7 @@ namespace NDExt.Services
             }
             catch
             {
-                throw new UserException("nuget.exe が見つからないため、パッケージ処理が実行できませんでした。https://www.nuget.org/downloads から nuget.exe をダウンロードし、適切なフォルダーに保存して、そのフォルダーを PATH 環境変数に追加してください。");
+                throw new UserException(Strings.ErrorNugetNotFound0);
             }
 
             #endregion
@@ -149,16 +146,15 @@ namespace NDExt.Services
 
             if (!string.IsNullOrEmpty(Request.CopyDir))
             {
-                ConsoleUtil.WriteHeader("Copy nupkg");
+                ConsoleUtil.WriteHeader(Strings.HeaderCopyNupkg0);
                 FileUtil.CopyFiles(packageOutputDir, c_NugetPackageFilePattern, Request.CopyDir);
             }
 
             #endregion
 
-            ConsoleUtil.WriteHeader("Done");
-            ConsoleUtil.WriteLine("パッケージ化を完了しました。");
+            ConsoleUtil.WriteHeader(Strings.HeaderDone0);
+            ConsoleUtil.WriteLine(Strings.LogPackagingCompleted0);
             ConsoleUtil.WriteLine();
-
         }
 
         #endregion

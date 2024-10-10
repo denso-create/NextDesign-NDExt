@@ -1,9 +1,9 @@
-﻿using NDExt.Utils;
+﻿using NDExt.Properties;
+using NDExt.Utils;
 using System;
 using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace NDExt.Commands
 {
@@ -30,7 +30,7 @@ namespace NDExt.Commands
         /// <param name="description">コマンドの説明。</param>
         protected NewCommandBase(string name, string description) : base(name, description)
         {
-            AddArgument<string>("name", "作成プロジェクト名を指定して下さい");
+            AddArgument<string>("name", Strings.DescriptionNewCommandProjectName0);
 
             Handler = CommandHandler.Create<string>(Handle);
         }
@@ -62,13 +62,7 @@ namespace NDExt.Commands
         {
             try
             {
-                var messageBuilder = new StringBuilder();
-                messageBuilder.AppendLine("Creating Next Design Extension Solution & Project");
-                messageBuilder.AppendLine();
-                messageBuilder.AppendLine($"Project Name: '{name}'");
-                messageBuilder.AppendLine($"Template Type: '{TemplateName}'");
-                messageBuilder.AppendLine($"Template Description: '{TemplateDescription}'");
-                ConsoleUtil.WriteHeader(messageBuilder.ToString());
+                ConsoleUtil.WriteHeader(string.Format(Strings.HeaderCreatingExtensionProjectDetails3, name, TemplateName, TemplateDescription));
 
                 // ソリューションを作成または検索します。
                 var slnFile = CreateOrGetSolution(name);
@@ -78,7 +72,7 @@ namespace NDExt.Commands
 
                 ProcessUtil.Start("dotnet", $@"sln ""{slnFile}"" add ""{projFile}"" ");
 
-                WriteLine("完了しました。");
+                WriteLine(Strings.LogCompletion0);
             }
             catch (Exception ex)
             {
@@ -100,12 +94,12 @@ namespace NDExt.Commands
 
             if (!string.IsNullOrEmpty(slnFile))
             {
-                WriteLine($"ソリューションファイル `{Path.GetFileName(slnFile)}` を検出しました。このファイルにプロジェクトを追加します。");
+                WriteLine(string.Format(Strings.LogSolutionFileDetected1, Path.GetFileName(slnFile)));
                 return slnFile;
             }
 
             slnFile = Path.Combine(CurrentDir, $"{projectName}{c_SolutionFileExtension}");
-            WriteLine($"ソリューションファイルを作成します。 {slnFile}");
+            WriteLine(string.Format(Strings.LogCreatingSolutionFile1, slnFile));
 
             // ソリューションを作成する
             ExecuteProcess("dotnet", $"new sln -n {projectName}");
@@ -131,7 +125,7 @@ namespace NDExt.Commands
 
             if (NDExtensionProjectFileUtil.ProjectFileExists(projectDir))
             {
-                throw new UserException("プロジェクトファイルがすでに存在しているため処理を中止します。");
+                throw new UserException(Strings.ErrorProjectFileAlreadyExists0);
             }
 
             // プロジェクトを作成
@@ -140,10 +134,10 @@ namespace NDExt.Commands
 
             if (string.IsNullOrEmpty(projFile))
             {
-                throw new UserException("プロジェクトファイルの作成に失敗しました。");
+                throw new UserException(Strings.ErrorProjectFileCreationFailed0);
             }
 
-            WriteLine($"{projectDir}に `{Path.GetFileName(projFile)}` を作成しました。");
+            WriteLine(string.Format(Strings.LogProjectFileCreated2, projectDir, Path.GetFileName(projFile)));
 
             return projFile;
         }

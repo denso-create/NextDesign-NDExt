@@ -1,4 +1,5 @@
-﻿using NDExt.Utils;
+﻿using NDExt.Properties;
+using NDExt.Utils;
 using System;
 using System.CommandLine.Invocation;
 
@@ -14,7 +15,7 @@ namespace NDExt.Commands
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public UninstallCommand() : base("uninstall", "プロジェクトのテンプレートをアンインストールします。")
+        public UninstallCommand() : base("uninstall", Strings.DescriptionUninstallCommand0)
         {
             this.Handler = CommandHandler.Create(Handle);
         }
@@ -31,7 +32,7 @@ namespace NDExt.Commands
         {
             try
             {
-                WriteLine("テンプレートをアンインストールしています...");
+                ConsoleUtil.WriteHeader(Strings.HeaderTemplateUninstalling0);
 
                 // インストール
                 var templates = ProjectTemplateUtil.GetTemplatePackages();
@@ -40,7 +41,7 @@ namespace NDExt.Commands
                     ExecuteProcess("dotnet", @$"new uninstall ""{template}""");
                 }
 
-                WriteLine("完了しました。");
+                WriteLine(Strings.LogCompletion0);
                 WriteLine("");
 
                 return Success;

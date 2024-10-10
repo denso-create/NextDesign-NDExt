@@ -1,4 +1,6 @@
-﻿namespace NDExt.Commands
+﻿using NDExt.Properties;
+
+namespace NDExt.Commands
 {
     /// <summary>
     /// エクステンションプロジェクトの新規作成を実行するコマンドクラスです。
@@ -10,7 +12,7 @@
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public NewCommand() : base("new", "現在のフォルダにNext Designのエクステンションのプロジェクトを作成します。") { }
+        public NewCommand() : base("new", Strings.DescriptionNewCommand0) { }
 
         #endregion
 
@@ -20,7 +22,7 @@
         protected override string TemplateName => "ndext";
 
         /// <inheritdoc/>
-        protected override string TemplateDescription => "Next Designの標準のエクステンションです。";
+        protected override string TemplateDescription => Strings.DescriptionTemplateStandardExtensionV40_0;
 
         #endregion
     }

@@ -1,4 +1,6 @@
-﻿namespace NDExt.Commands
+﻿using NDExt.Properties;
+
+namespace NDExt.Commands
 {
     /// <summary>
     /// ExtensionPointsを利用したプロジェクトの新規作成を実行するコマンドクラスです。
@@ -10,7 +12,7 @@
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        public NewExtpCommand() : base("new-extp", "現在のフォルダにExtensionPointsライブラリを用いたエクステンションのプロジェクトを作成します。") { }
+        public NewExtpCommand() : base("new-extp", Strings.DescriptionNewExtpCommand0) { }
 
         #endregion
 
@@ -20,7 +22,7 @@
         protected override string TemplateName => "ndextp";
 
         /// <inheritdoc />
-        protected override string TemplateDescription => "ExtensionPointsライブラリを用いたエクステンションです（推奨）。";
+        protected override string TemplateDescription => Strings.DescriptionTemplateExtpStandardExtensionV40_0;
 
         #endregion
     }

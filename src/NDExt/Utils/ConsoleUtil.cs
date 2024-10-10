@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NDExt.Properties;
+using System;
 
 namespace NDExt.Utils
 {
@@ -35,7 +36,7 @@ namespace NDExt.Utils
         public static void WriteCommandHeader(string message)
         {
             WriteHeader(message, c_CommandHeaderSeparatorChar, includePadding: true);
-            WriteLine("");
+            WriteLine();
         }
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace NDExt.Utils
         /// <param name="includePadding">メッセージの前後に空行を挿入するかどうか。デフォルトは<see langword="false"/>です。</param>
         public static void WriteHeader(string message, char separator = c_DefaultSeparatorChar, int count = c_DefaultSeparatorCount, bool includePadding = false)
         {
-            WriteLine("");
+            WriteLine();
             WriteSeparator(separator, count);
             if (includePadding)
             {
@@ -103,9 +104,8 @@ namespace NDExt.Utils
         /// <param name="message">出力するエラーメッセージ。</param>
         public static void WriteError(string message)
         {
-            WriteLine($"Error: {message}");
+            WriteLine(string.Format(Strings.ErrorHeader1, message));
         }
-
 
         /// <summary>
         /// エラーを出力します。

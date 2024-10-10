@@ -1,4 +1,5 @@
-﻿using NDExt.Utils;
+﻿using NDExt.Properties;
+using NDExt.Utils;
 using System;
 using System.CommandLine.Invocation;
 
@@ -14,7 +15,7 @@ namespace NDExt.Commands
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        public InstallCommand() : base("install", "プロジェクトのテンプレートをインストールします。最初に実行して下さい。")
+        public InstallCommand() : base("install", Strings.DescriptionInstallCommand0)
         {
             Handler = CommandHandler.Create(Handle);
         }
@@ -31,7 +32,7 @@ namespace NDExt.Commands
         {
             try
             {
-                ConsoleUtil.WriteHeader("テンプレートをインストールしています...");
+                ConsoleUtil.WriteHeader(Strings.HeaderInstallingTemplates0);
 
                 // インストール
                 var templates = ProjectTemplateUtil.GetTemplatePackages();
@@ -40,9 +41,7 @@ namespace NDExt.Commands
                     ExecuteProcess("dotnet", @$"new install ""{template}""");
                 }
 
-                WriteLine("完了しました。");
-                WriteLine("* `ndext new` `ndext new-*` コマンドでNext Designのエクステンションが作成できます。");
-                WriteLine("* `dotnet new`コマンドでもエクステンションが作成できます。");
+                WriteLine(Strings.LogInstallationCompleted0);
                 WriteLine("");
 
                 return Success;

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using NDExt.Properties;
+using System.Diagnostics;
 
 namespace NDExt.Utils
 {
@@ -33,7 +34,7 @@ namespace NDExt.Utils
             // 終了コードが0以外の場合は例外をスロー
             if (process.ExitCode != 0)
             {
-                throw new UserException($"コマンド `{filename} {args}`の実行に失敗しました。 ");
+                throw new UserException(string.Format(Strings.ErrorCommandExecutionFailed2, filename, args));
             }
 
             return process.ExitCode;

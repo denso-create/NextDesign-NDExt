@@ -1,6 +1,7 @@
 ﻿using NDExt.Services;
 using System;
 using System.CommandLine.Invocation;
+using NDExt.Properties;
 
 namespace NDExt.Commands
 {
@@ -14,13 +15,13 @@ namespace NDExt.Commands
         /// <summary>
         /// コンストラクタ。
         /// </summary>
-        public PackCommand() : base("pack", "エクステンションをパッケージ化します。")
+        public PackCommand() : base("pack", Strings.DescriptionPackCommand0)
         {
-            AddOption<string>("--project", "-p", $"対象プロジェクトのディレクトリを指定します。未指定の場合は現在のディレクトリ以下を探索して実行します。");
-            AddOption<string>("--ndver", "-v", $"動作の対象となるNext Designのバージョンです。未指定の場合は `{AppSettings.DefaultNdVersion}` です。");
-            AddOption<string>("--config", "-c", $"ビルド構成を指定します。`Debug`または`Release`を指定して下さい。未指定の場合は`{AppSettings.DefaultBuildTarget}` です。");
-            AddOption<string>("--output", "-o", $"作成したパッケージの格納フォルダを指定します。未指定の場合は `{AppSettings.PackageOutputDir}` です。");
-            AddOption<string>("--copydir", "-d", $"作成したパッケージを指定フォルダにもコピーします。");
+            AddOption<string>("--project", "-p", Strings.DescriptionPackCommandProjectDir0);
+            AddOption<string>("--ndver", "-v", string.Format(Strings.DescriptionPackCommandNDVersion1, AppSettings.DefaultNdVersion));
+            AddOption<string>("--config", "-c", string.Format(Strings.DescriptionPackCommandBuildConfig1, AppSettings.DefaultBuildTarget));
+            AddOption<string>("--output", "-o", string.Format(Strings.DescriptionPackCommandOutputDir1, AppSettings.PackageOutputDir));
+            AddOption<string>("--copydir", "-d", Strings.DescriptionPackCommandCopyDir0);
 
             Handler = CommandHandler.Create<string, string, string, string, string>(Handle);
         }
@@ -42,7 +43,7 @@ namespace NDExt.Commands
         {
             try
             {
-                WriteLine("エクステンションをパッケージ化しています...");
+                WriteLine(Strings.StatusPackagingExtension0);
 
                 var request = new PackageRequest()
                 {
@@ -67,7 +68,6 @@ namespace NDExt.Commands
                 WriteError(ex);
                 return Fail;
             }
-
         }
 
         #endregion
