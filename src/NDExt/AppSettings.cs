@@ -34,7 +34,7 @@ namespace NDExt
         /// <summary>
         /// デフォルトのNext Designのバージョンのデフォルト値。
         /// </summary>
-        private const string c_DefaultNdVersionDefault = "3.0";
+        private const string c_DefaultNdVersionDefault = "3.1";
 
         #endregion
 
