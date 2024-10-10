@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace NDExt.Utils
 {
