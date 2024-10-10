@@ -12,9 +12,8 @@ namespace NDExt.Utils
         #region プロパティ
 
         /// <summary>
-        /// アプリケーションのベースディレクトリを取得します
+        /// アプリケーションの実行ファイルが配置されているベースディレクトリを取得します。
         /// </summary>
-        /// <returns></returns>
         public static string AppDir
         {
             get
@@ -25,7 +24,7 @@ namespace NDExt.Utils
         }
 
         /// <summary>
-        /// 現在のディレクトリ
+        /// 現在のディレクトリを取得します。
         /// </summary>
         public static string CurrentDir => Environment.CurrentDirectory;
 

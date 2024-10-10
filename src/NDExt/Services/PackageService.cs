@@ -5,15 +5,29 @@ using System.Linq;
 namespace NDExt.Services
 {
     /// <summary>
-    /// パッケージ化サービスです
+    /// パッケージ化サービスです。
     /// </summary>
 
     public class PackageService
     {
-        #region フィールド
+        #region 定数定義
 
         /// <summary>
-        /// リクエスト情報
+        /// Nuspecファイルの拡張子。
+        /// </summary>
+        private const string c_NuspecFileExtension = ".nuspec";
+
+        /// <summary>
+        /// NuGetパッケージファイルの検索パターン。
+        /// </summary>
+        private const string c_NugetPackageFilePattern = "*.nupkg";
+
+        #endregion
+
+        #region プロパティ
+
+        /// <summary>
+        /// パッケージ化のリクエスト情報。
         /// </summary>
         private PackageRequest Request { get; set; }
 
@@ -22,9 +36,10 @@ namespace NDExt.Services
         #region 公開メソッド
 
         /// <summary>
-        /// パッケージ化
+        /// 指定されたリクエストに基づき、パッケージ化を実行します。
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">パッケージ化のリクエスト情報。</param>
+        /// <exception cref="UserException">プロジェクトファイルが見つからない場合にスローされます。</exception>
         public void Package(PackageRequest request)
         {
             Request = request;
@@ -48,9 +63,9 @@ namespace NDExt.Services
         #region 内部メソッド
 
         /// <summary>
-        /// プロジェクトファイルをパッケージ化します
+        /// 指定されたディレクトリ内のプロジェクトファイルをパッケージ化します。
         /// </summary>
-        /// <param name="projectDir"></param>
+        /// <param name="projectDir">プロジェクトファイルが格納されているディレクトリ。</param>
         private void PackageProject(string projectDir)
         {
             #region ディレクトリ
@@ -103,7 +118,7 @@ namespace NDExt.Services
             // nuspecファイルを保存
             var nuspec = NdPackageNuspecInfo.CreateFromProjectFile(projectFilePath);
             nuspec.CheckErrors();
-            var nuspecFilePath = Path.Combine(packageBuildDir, $"{nuspec.Id}.nuspec");
+            var nuspecFilePath = Path.Combine(packageBuildDir, $"{nuspec.Id}{c_NuspecFileExtension}");
             nuspec.SaveToFile(nuspecFilePath);
 
             // publishした結果をパッケージのビルド用フォルダにコピー
@@ -135,7 +150,7 @@ namespace NDExt.Services
             if (!string.IsNullOrEmpty(Request.CopyDir))
             {
                 ConsoleUtil.WriteHeader("Copy nupkg");
-                FileUtil.CopyFiles(packageOutputDir, "*.nupkg", Request.CopyDir);
+                FileUtil.CopyFiles(packageOutputDir, c_NugetPackageFilePattern, Request.CopyDir);
             }
 
             #endregion

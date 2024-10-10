@@ -3,7 +3,7 @@
 namespace NDExt.Services
 {
     /// <summary>
-    /// パッケージの実行要求オブジェクトです
+    /// パッケージの実行要求オブジェクトです。
     /// </summary>
     public class PackageRequest
     {
@@ -40,7 +40,7 @@ namespace NDExt.Services
         #region 公開メソッド
 
         /// <summary>
-        /// 初期値をセット
+        /// 初期値をセットします。
         /// </summary>
         public void SetDefaults()
         {

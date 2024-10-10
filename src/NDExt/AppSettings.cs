@@ -4,15 +4,44 @@ using System.Runtime.CompilerServices;
 namespace NDExt
 {
     /// <summary>
-    /// アプリケーションのコンフィグ情報
-    /// IConfigurationRootをラップしたオブジェクトです。
+    /// アプリケーションのコンフィグ情報を提供するクラスです。
+    /// IConfigurationRootをラップし、設定値を提供します。
     /// </summary>
     public static class AppSettings
     {
+        #region 定数
+
+        /// <summary>
+        /// パッケージのデフォルト出力フォルダ名のデフォルト値。
+        /// </summary>
+        private const string c_PackageOutputDirDefault = "ndpackages";
+
+        /// <summary>
+        /// パッケージ化するコンテンツのフォルダ名のデフォルト値。
+        /// </summary>
+        private const string c_PackageContentsDirDefault = "pkgContents";
+
+        /// <summary>
+        /// パッケージのビルド結果のデフォルト値。
+        /// </summary>
+        private const string c_PackageBuildDirDefault = "ndpackage";
+
+        /// <summary>
+        /// デフォルトのビルドターゲットのデフォルト値。
+        /// </summary>
+        private const string c_DefaultBuildTargetDefault = "Release";
+
+        /// <summary>
+        /// デフォルトのNext Designのバージョンのデフォルト値。
+        /// </summary>
+        private const string c_DefaultNdVersionDefault = "3.1";
+
+        #endregion
+
         #region フィールド
 
         /// <summary>
-        /// コンフィグ情報。
+        /// コンフィグ情報のルートオブジェクト。
         /// </summary>
         private static IConfigurationRoot s_Config;
 
@@ -21,38 +50,38 @@ namespace NDExt
         #region プロパティ
 
         /// <summary>
-        /// パッケージのデフォルト出力フォルダ名
+        /// パッケージのデフォルト出力フォルダ名を取得します。
         /// </summary>
-        public static string PackageOutputDir => GetValue("ndpackages");
+        public static string PackageOutputDir => GetValue(c_PackageOutputDirDefault);
 
         /// <summary>
-        /// パッケージ化するコンテンツのフォルダ名
+        /// パッケージ化するコンテンツのフォルダ名を取得します。
         /// </summary>
-        public static string PackageContentsDir => GetValue("pkgContents");
+        public static string PackageContentsDir => GetValue(c_PackageContentsDirDefault);
 
         /// <summary>
-        /// パッケージのビルド結果
+        /// パッケージのビルド結果を取得します。
         /// </summary>
-        public static string PackageBuildDir => GetValue("ndpackage");
+        public static string PackageBuildDir => GetValue(c_PackageBuildDirDefault);
 
         /// <summary>
-        /// デフォルトのビルドターゲット
+        /// デフォルトのビルドターゲットを取得します。
         /// </summary>
-        public static string DefaultBuildTarget => GetValue("Release");
+        public static string DefaultBuildTarget => GetValue(c_DefaultBuildTargetDefault);
 
         /// <summary>
-        /// デフォルトのNext Designのバージョン
+        /// デフォルトのNext Designのバージョンを取得します。
         /// </summary>
-        public static string DefaultNdVersion => GetValue("3.0");
+        public static string DefaultNdVersion => GetValue(c_DefaultNdVersionDefault);
 
         #endregion
 
         #region 公開メソッド
 
         /// <summary>
-        /// Configオブジェクトで初期化
+        /// コンフィグオブジェクトを使用して設定を初期化します。
         /// </summary>
-        /// <param name="config"></param>
+        /// <param name="config">アプリケーションのコンフィグ情報。</param>
         public static void Initialize(IConfigurationRoot config)
         {
             s_Config = config;
@@ -63,11 +92,11 @@ namespace NDExt
         #region 内部メソッド
 
         /// <summary>
-        /// 値を取得します
+        /// コンフィグ値を取得します。設定が存在しない場合は、指定されたデフォルト値を返します。
         /// </summary>
-        /// <param name="defaultValue">エントリがない場合のデフォルト値</param>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="defaultValue">エントリがない場合のデフォルト値。</param>
+        /// <param name="name">設定項目名。既定値は呼び出し元メソッド名。</param>
+        /// <returns>設定された値、またはデフォルト値。</returns>
         private static string GetValue(string defaultValue, [CallerMemberName] string name = null)
         {
             var val = s_Config[name];

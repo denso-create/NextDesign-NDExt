@@ -7,17 +7,21 @@ namespace NDExt.Utils
     /// </summary>
     internal static class ProjectTemplateUtil
     {
+        #region 定数定義
+
+        /// <summary>
+        /// NextDesignのプロジェクトテンプレート名。
+        /// </summary>
+        private const string c_NextDesignProjectTemplates = "NextDesign.Extension.ProjectTemplates";
+
+        #endregion
+
         #region 公開メソッド
 
         /// <summary>
-        /// プロジェクトテンプレートのパッケージファイル
+        /// プロジェクトテンプレートのパッケージファイルの列挙を取得します。
         /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<string> GetTemplatePackages()
-        {
-            var packages = new string[] { "NextDesign.Extension.ProjectTemplates" };
-            return packages;
-        }
+        public static IEnumerable<string> GetTemplatePackages() => new[] { c_NextDesignProjectTemplates };
 
         #endregion
     }

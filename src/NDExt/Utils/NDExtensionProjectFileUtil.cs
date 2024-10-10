@@ -9,6 +9,30 @@ namespace NDExt.Utils
     /// </summary>
     public class NDExtensionProjectFileUtil
     {
+        #region 定数定義
+
+        /// <summary>
+        /// C#プロジェクトファイルの検索パターン。
+        /// </summary>
+        private const string c_CsprojFilePattern = "*.csproj";
+
+        /// <summary>
+        /// エクステンションのマニフェストファイル名。
+        /// </summary>
+        private const string c_ManifestFileName = "manifest.json";
+
+        /// <summary>
+        /// NextDesign.Core.dll のファイル名。
+        /// </summary>
+        private const string c_NextDesignCoreDll = "NextDesign.Core.dll";
+
+        /// <summary>
+        /// NextDesign.Desktop.dll のファイル名。
+        /// </summary>
+        private const string c_NextDesignDesktopDll = "NextDesign.Desktop.dll";
+
+        #endregion
+
         #region 公開メソッド
 
         /// <summary>
@@ -19,7 +43,7 @@ namespace NDExt.Utils
         public static IEnumerable<string> FindExtensionProjectDirs(string targetDir)
         {
             var ret = new HashSet<string>();
-            var csProjFiles = Directory.EnumerateFiles(targetDir, "*.csproj", SearchOption.AllDirectories);
+            var csProjFiles = Directory.EnumerateFiles(targetDir, c_CsprojFilePattern, SearchOption.AllDirectories);
 
             foreach (var csProjFile in csProjFiles)
             {
@@ -27,7 +51,7 @@ namespace NDExt.Utils
                 var parentDir = Directory.GetParent(csProjFile).FullName;
 
                 // マニフェストファイルがあれば対象とみなします
-                if (Directory.EnumerateFiles(parentDir, "manifest.json", SearchOption.AllDirectories).Any())
+                if (Directory.EnumerateFiles(parentDir, c_ManifestFileName, SearchOption.AllDirectories).Any())
                 {
                     ret.Add(parentDir);
                 }
@@ -39,18 +63,18 @@ namespace NDExt.Utils
         /// <summary>
         /// プロジェクトファイルのパスを取得します
         /// </summary>
-        /// <param name="projectDir"></param>
-        /// <returns></returns>
+        /// <param name="projectDir">プロジェクトファイルのディレクトリ。</param>
+        /// <returns>プロジェクトファイルのパス。存在しない場合はnullを返します。</returns>
         public static string GetProjectFilePath(string projectDir)
         {
-            var csProjFile = Directory.EnumerateFiles(projectDir, "*.csproj", SearchOption.AllDirectories).FirstOrDefault();
+            var csProjFile = Directory.EnumerateFiles(projectDir, c_CsprojFilePattern, SearchOption.AllDirectories).FirstOrDefault();
             return csProjFile;
         }
 
         /// <summary>
         /// プロジェクトファイルが存在するかを確認します。
         /// </summary>
-        /// <param name="projectDir"></param>
+        /// <param name="projectDir">プロジェクトファイルのディレクトリ。</param>
         /// <returns>プロジェクトファイルが存在するか。存在する場合はtrue、それ以外はfalseです。</returns>
         public static bool ProjectFileExists(string projectDir)
         {
@@ -60,16 +84,16 @@ namespace NDExt.Utils
 
         /// <summary>
         /// NDのエクステンションのプログラムを指定フォルダにコピーします。
-        /// 不要なNextDesign.Core.dllのようなDLLを削除します。
+        /// コピー後、不要なNextDesign.Core.dllやNextDesign.Desktop.dllを削除します。
         /// </summary>
-        /// <param name="sourceDir"></param>
-        /// <param name="destDir"></param>
+        /// <param name="sourceDir">コピー元のディレクトリ。</param>
+        /// <param name="destDir">コピー先のディレクトリ。</param>
         public static void CopyExtensionFolder(string sourceDir, string destDir)
         {
             FileUtil.CopyDirectory(sourceDir, destDir);
 
-            FileUtil.DeleteFile(Path.Combine(destDir, "NextDesign.Core.dll"));
-            FileUtil.DeleteFile(Path.Combine(destDir, "NextDesign.Desktop.dll"));
+            FileUtil.DeleteFile(Path.Combine(destDir, c_NextDesignCoreDll));
+            FileUtil.DeleteFile(Path.Combine(destDir, c_NextDesignDesktopDll));
         }
 
         #endregion

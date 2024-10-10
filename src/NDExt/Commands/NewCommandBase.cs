@@ -3,6 +3,7 @@ using System;
 using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace NDExt.Commands
 {
@@ -11,13 +12,22 @@ namespace NDExt.Commands
     /// </summary>
     public abstract class NewCommandBase : CommandBase
     {
+        #region 定数定義
+
+        /// <summary>
+        /// ソリューションファイルの拡張子。
+        /// </summary>
+        private const string c_SolutionFileExtension = ".sln";
+
+        #endregion
+
         #region 構築・消滅
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="description"></param>
+        /// <param name="name">コマンド名。</param>
+        /// <param name="description">コマンドの説明。</param>
         protected NewCommandBase(string name, string description) : base(name, description)
         {
             AddArgument<string>("name", "作成プロジェクト名を指定して下さい");
@@ -52,13 +62,13 @@ namespace NDExt.Commands
         {
             try
             {
-                WriteLine($"# ---------------------------------------------------------------");
-                WriteLine($"# Creating Next Design Extension Solution & Project");
-                WriteLine($"# ");
-                WriteLine($"# Project Name: '{name}'");
-                WriteLine($"# Template Type: '{TemplateName}'");
-                WriteLine($"# Template Description: '{TemplateDescription}'");
-                WriteLine($"# ---------------------------------------------------------------");
+                var messageBuilder = new StringBuilder();
+                messageBuilder.AppendLine("Creating Next Design Extension Solution & Project");
+                messageBuilder.AppendLine();
+                messageBuilder.AppendLine($"Project Name: '{name}'");
+                messageBuilder.AppendLine($"Template Type: '{TemplateName}'");
+                messageBuilder.AppendLine($"Template Description: '{TemplateDescription}'");
+                ConsoleUtil.WriteHeader(messageBuilder.ToString());
 
                 // ソリューションを作成または検索します。
                 var slnFile = CreateOrGetSolution(name);
@@ -86,7 +96,7 @@ namespace NDExt.Commands
         /// <returns>ソリューションファイルのパス。</returns>
         protected string CreateOrGetSolution(string projectName)
         {
-            var slnFile = Directory.EnumerateFiles(CurrentDir, "*.sln").FirstOrDefault();
+            var slnFile = Directory.EnumerateFiles(CurrentDir, $"*{c_SolutionFileExtension}").FirstOrDefault();
 
             if (!string.IsNullOrEmpty(slnFile))
             {
@@ -94,7 +104,7 @@ namespace NDExt.Commands
                 return slnFile;
             }
 
-            slnFile = Path.Combine(CurrentDir, $"{projectName}.sln");
+            slnFile = Path.Combine(CurrentDir, $"{projectName}{c_SolutionFileExtension}");
             WriteLine($"ソリューションファイルを作成します。 {slnFile}");
 
             // ソリューションを作成する
