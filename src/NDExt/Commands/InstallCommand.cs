@@ -38,7 +38,7 @@ namespace NDExt.Commands
                 var templates = ProjectTemplateUtil.GetTemplatePackages();
                 foreach (var template in templates)
                 {
-                    ExecuteProcess("dotnet", @$"new -i ""{template}""");
+                    ExecuteProcess("dotnet", @$"new install ""{template}""");
                 }
 
                 WriteLine(Strings.LogInstallationCompleted0);
