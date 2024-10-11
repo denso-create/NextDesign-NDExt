@@ -133,7 +133,8 @@
     <value>==========&gt; Packaging Project &lt;=========================
 [in] Target Project: {0}
 [in] Build Target: {1}
-[in] ND Version: {2}             ========================================================</value>
+[in] ND Version: {2} 
+========================================================</value>
   </data>
   <data name="HeaderBuildProject0" xml:space="preserve">
     <value>Build Project</value>

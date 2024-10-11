@@ -466,7 +466,8 @@ namespace NDExt.Properties {
         ///   ==========&gt; Packaging Project &lt;=========================
         ///[in] Target Project: {0}
         ///[in] Build Target: {1}
-        ///[in] ND Version: {2}             ======================================================== に類似しているローカライズされた文字列を検索します。
+        ///[in] ND Version: {2} 
+        ///======================================================== に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string StatusPackagingProject3 {
             get {
