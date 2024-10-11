@@ -37,7 +37,7 @@ namespace NDExt.Commands
         /// <see cref="ndver">動作の対象となるNext Designのバージョン。</see>
         /// <see cref="config">ビルド構成。</see>
         /// <see cref="output">作成したパッケージの格納フォルダ。</see>
-        /// <see cref="copydir">作成したパッケージを指定フォルダにもコピーするか。</see>
+        /// <see cref="copydir">作成したパッケージのコピー先フォルダ。</see>
         /// <returns>終了コード。成功時は<see cref="CommandBase.Success"/>、失敗時は<see cref="CommandBase.Fail"/>を返します。</returns>
         private int Handle(string project, string ndver, string config, string output, string copydir)
         {
