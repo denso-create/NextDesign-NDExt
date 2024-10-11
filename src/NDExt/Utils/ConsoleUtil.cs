@@ -73,7 +73,6 @@ namespace NDExt.Utils
                 WriteLine($"# {line.Trim()}");
             }
 
-            WriteLine($"# {message}");
             if (includePadding)
             {
                 WriteLine("#");
