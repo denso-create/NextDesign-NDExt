@@ -15,8 +15,21 @@ rem copy the generated .nupkg file to a local package source
 mkdir C:\NuGetLocalPackages
 copy .\NDExt\bin\Release\*.nupkg C:\NuGetLocalPackages
 
-rem add the local package folder as a NuGet source
-dotnet nuget add source C:\NuGetLocalPackages --name LocalPackages
+rem check if the local package source is already added
+set sourceExists=false
+for /f "tokens=*" %%i in ('dotnet nuget list source') do (
+    echo %%i | findstr /c:"C:\NuGetLocalPackages" >nul
+    if not errorlevel 1 (
+        set sourceExists=true
+    )
+)
+
+if "%sourceExists%"=="false" (
+    rem add the local package folder as a NuGet source if not found
+    dotnet nuget add source C:\NuGetLocalPackages --name LocalPackages
+) else (
+    echo LocalPackages source is already added.
+)
 
 rem install the tool from the local NuGet package source
 dotnet tool install --global NDExt --add-source C:\NuGetLocalPackages
