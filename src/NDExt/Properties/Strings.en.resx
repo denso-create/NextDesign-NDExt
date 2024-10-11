@@ -131,7 +131,7 @@
   </data>
   <data name="StatusPackagingProject3" xml:space="preserve">
     <value>==========&gt; Packaging Project &lt;=========================
-[in] TargetProject: {0}
+[in] Target Project: {0}
 [in] Build Target: {1}
 [in] ND Version: {2}             ========================================================</value>
   </data>

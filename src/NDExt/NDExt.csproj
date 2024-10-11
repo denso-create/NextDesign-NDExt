@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<OutputType>Exe</OutputType>
-	<TargetFramework>net8.0</TargetFramework>
-	<RootNamespace>NDExt</RootNamespace>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>NDExt</RootNamespace>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>ndext</ToolCommandName>
-	<Nullable>disable</Nullable>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Nullable>disable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.4.0</Version>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <Authors>DENSO CREATE INC.</Authors>

@@ -124,7 +124,7 @@ namespace NDExt.Properties {
         }
         
         /// <summary>
-        ///   作成プロジェクト名を指定して下さい に類似しているローカライズされた文字列を検索します。
+        ///   作成プロジェクト名を指定して下さい。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DescriptionNewCommandProjectName0 {
             get {
@@ -464,7 +464,7 @@ namespace NDExt.Properties {
         
         /// <summary>
         ///   ==========&gt; Packaging Project &lt;=========================
-        ///[in] TargetProject: {0}
+        ///[in] Target Project: {0}
         ///[in] Build Target: {1}
         ///[in] ND Version: {2}             ======================================================== に類似しているローカライズされた文字列を検索します。
         /// </summary>
