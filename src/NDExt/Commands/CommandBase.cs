@@ -5,19 +5,19 @@ using System.CommandLine;
 namespace NDExt.Commands
 {
     /// <summary>
-    /// コマンドのベース
+    /// コマンドのベースクラスです。
     /// </summary>
     public abstract class CommandBase : Command
     {
-        #region 定数
+        #region 定数定義
 
         /// <summary>
-        /// 成功
+        /// 成功を表す終了コード。
         /// </summary>
         public const int Success = 0;
 
         /// <summary>
-        /// 失敗
+        /// 失敗を表す終了コード。
         /// </summary>
         public const int Fail = 1;
 
