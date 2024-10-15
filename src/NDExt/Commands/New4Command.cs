@@ -3,16 +3,16 @@
 namespace NDExt.Commands
 {
     /// <summary>
-    /// エクステンションプロジェクトの新規作成を実行するコマンドクラスです。
+    /// V4.0向けのエクステンションプロジェクトの新規作成を実行するコマンドクラスです。
     /// </summary>
-    public class NewCommand : NewCommandBase
+    public class New4Command : NewCommandBase
     {
         #region 構築・消滅
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public NewCommand() : base("new", Strings.DescriptionNewCommand0) { }
+        public New4Command() : base("new4", Strings.DescriptionNew4Command0) { }
 
         #endregion
 

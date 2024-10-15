@@ -8,7 +8,7 @@
     <ToolCommandName>ndext</ToolCommandName>
     <Nullable>disable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.3.2</Version>
+    <Version>1.4.0</Version>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <Authors>DENSO CREATE INC.</Authors>
     <Company>DENSO CREATE INC.</Company>

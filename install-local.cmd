@@ -1,5 +1,8 @@
 @echo off
 
+rem Define a constant for the local package folder
+set LOCAL_PACKAGE_PATH=C:\NuGetLocalPackages
+
 rem uninstall NDExt tool (if already installed)
 dotnet tool uninstall --global NDExt
 
@@ -11,14 +14,27 @@ cd src
 dotnet build -c Release
 dotnet pack -c Release
 
-rem copy the generated .nupkg file to a local package source
-mkdir C:\NuGetLocalPackages
-copy .\NDExt\bin\Release\*.nupkg C:\NuGetLocalPackages
+rem copy the generated .nupkg file to the local package source
+mkdir %LOCAL_PACKAGE_PATH%
+copy .\NDExt\bin\Release\*.nupkg %LOCAL_PACKAGE_PATH%
 
-rem add the local package folder as a NuGet source
-dotnet nuget add source C:\NuGetLocalPackages --name LocalPackages
+rem check if the local package source is already added
+set sourceExists=false
+for /f "tokens=*" %%i in ('dotnet nuget list source') do (
+    echo %%i | findstr /c:"%LOCAL_PACKAGE_PATH%" >nul
+    if not errorlevel 1 (
+        set sourceExists=true
+    )
+)
+
+if "%sourceExists%"=="false" (
+    rem add the local package folder as a NuGet source if not found
+    dotnet nuget add source %LOCAL_PACKAGE_PATH% --name LocalPackages
+) else (
+    echo LocalPackages source is already added.
+)
 
 rem install the tool from the local NuGet package source
-dotnet tool install --global NDExt --add-source C:\NuGetLocalPackages
+dotnet tool install --global NDExt --add-source %LOCAL_PACKAGE_PATH%
 
 pause

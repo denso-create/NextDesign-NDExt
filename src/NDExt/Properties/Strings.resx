@@ -133,7 +133,8 @@
     <value>==========&gt; Packaging Project &lt;=========================
 [in] Target Project: {0}
 [in] Build Target: {1}
-[in] ND Version: {2}             ========================================================</value>
+[in] ND Version: {2} 
+========================================================</value>
   </data>
   <data name="HeaderBuildProject0" xml:space="preserve">
     <value>Build Project</value>
@@ -179,13 +180,13 @@
   <data name="DescriptionNewCommand0" xml:space="preserve">
     <value>現在のフォルダに最新のNext Design向けのエクステンションのプロジェクトを作成します。</value>
   </data>
-  <data name="DescriptionTemplateStandardExtensionV40_0" xml:space="preserve">
+  <data name="DescriptionTemplateStandardExtensionV4_0" xml:space="preserve">
     <value>Next Design V4.0向けの標準のエクステンションです。</value>
   </data>
   <data name="DescriptionNewExtpCommand0" xml:space="preserve">
     <value>現在のフォルダにExtensionPointsライブラリを用いた最新のNext Design向けのエクステンションのプロジェクトを作成します。</value>
   </data>
-  <data name="DescriptionTemplateExtpStandardExtensionV40_0" xml:space="preserve">
+  <data name="DescriptionTemplateExtpStandardExtensionV4_0" xml:space="preserve">
     <value>Next Design V4.0向けのExtensionPointsライブラリを用いたエクステンションです（推奨）。</value>
   </data>
   <data name="DescriptionNewCommandProjectName0" xml:space="preserve">
@@ -245,5 +246,23 @@ Template Description: '{2}'</value>
   </data>
   <data name="DescriptionCreateExtensionUtility0" xml:space="preserve">
     <value>Next Designのエクステンションを作成できるユーティリティです。</value>
+  </data>
+  <data name="DescriptionNew31Command0" xml:space="preserve">
+    <value>現在のフォルダにNext Design V3.1向けのエクステンションのプロジェクトを作成します。</value>
+  </data>
+  <data name="DescriptionNew4Command0" xml:space="preserve">
+    <value>現在のフォルダにNext Design V4.0向けのエクステンションのプロジェクトを作成します。</value>
+  </data>
+  <data name="DescriptionNew4ExtpCommand0" xml:space="preserve">
+    <value>現在のフォルダにExtensionPointsライブラリを用いたNext Design V4.0向けのエクステンションのプロジェクトを作成します。</value>
+  </data>
+  <data name="DescriptionNew31ExtpCommand0" xml:space="preserve">
+    <value>現在のフォルダにExtensionPointsライブラリを用いたNext Design V3.1向けのエクステンションのプロジェクトを作成します。</value>
+  </data>
+  <data name="DescriptionTemplateExtpStandardExtensionV31_0" xml:space="preserve">
+    <value>Next Design V3.1向けのExtensionPointsライブラリを用いたエクステンションです（推奨）。</value>
+  </data>
+  <data name="DescriptionTemplateStandardExtensionV31_0" xml:space="preserve">
+    <value>Next Design V3.1向けの標準のエクステンションです。</value>
   </data>
 </root>
