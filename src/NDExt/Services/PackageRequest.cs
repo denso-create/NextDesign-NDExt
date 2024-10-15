@@ -44,8 +44,8 @@ namespace NDExt.Services
         /// </summary>
         public void SetDefaults()
         {
-            if (string.IsNullOrEmpty(NDVersion)) NDVersion = AppSettings.DefaultNdVersion;
-            if (string.IsNullOrEmpty(BuildConfig)) BuildConfig = AppSettings.DefaultBuildTarget;
+            if (string.IsNullOrEmpty(NDVersion)) NDVersion = AppSettings.NdVersion;
+            if (string.IsNullOrEmpty(BuildConfig)) BuildConfig = AppSettings.BuildTarget;
             if (string.IsNullOrEmpty(OutputDir)) OutputDir = AppSettings.PackageOutputDir;
             if (string.IsNullOrEmpty(TargetDir)) TargetDir = Env.CurrentDir;
         }

@@ -18,8 +18,8 @@ namespace NDExt.Commands
         public PackCommand() : base("pack", Strings.DescriptionPackCommand0)
         {
             AddOption<string>("--project", "-p", Strings.DescriptionPackCommandProjectDir0);
-            AddOption<string>("--ndver", "-v", string.Format(Strings.DescriptionPackCommandNDVersion1, AppSettings.DefaultNdVersion));
-            AddOption<string>("--config", "-c", string.Format(Strings.DescriptionPackCommandBuildConfig1, AppSettings.DefaultBuildTarget));
+            AddOption<string>("--ndver", "-v", string.Format(Strings.DescriptionPackCommandNDVersion1, AppSettings.NdVersion));
+            AddOption<string>("--config", "-c", string.Format(Strings.DescriptionPackCommandBuildConfig1, AppSettings.BuildTarget));
             AddOption<string>("--output", "-o", string.Format(Strings.DescriptionPackCommandOutputDir1, AppSettings.PackageOutputDir));
             AddOption<string>("--copydir", "-d", Strings.DescriptionPackCommandCopyDir0);
 

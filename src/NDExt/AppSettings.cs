@@ -12,27 +12,27 @@ namespace NDExt
         #region 定数
 
         /// <summary>
-        /// パッケージのデフォルト出力フォルダ名のデフォルト値。
+        /// パッケージのデフォルトの出力フォルダ名。
         /// </summary>
         private const string c_PackageOutputDirDefault = "ndpackages";
 
         /// <summary>
-        /// パッケージ化するコンテンツのフォルダ名のデフォルト値。
+        /// パッケージ化するコンテンツのデフォルトのフォルダ名。
         /// </summary>
         private const string c_PackageContentsDirDefault = "pkgContents";
 
         /// <summary>
-        /// パッケージのビルド結果のデフォルト値。
+        /// パッケージのビルド結果を格納するデフォルトのフォルダ名。
         /// </summary>
         private const string c_PackageBuildDirDefault = "ndpackage";
 
         /// <summary>
-        /// デフォルトのビルドターゲットのデフォルト値。
+        /// デフォルトのビルド構成。
         /// </summary>
         private const string c_DefaultBuildTargetDefault = "Release";
 
         /// <summary>
-        /// デフォルトのNext Designのバージョンのデフォルト値。
+        /// エクステンションの動作の対象となるNext Designのバージョンのデフォルト値。
         /// </summary>
         private const string c_DefaultNdVersionDefault = "3.1";
 
@@ -50,29 +50,29 @@ namespace NDExt
         #region プロパティ
 
         /// <summary>
-        /// パッケージのデフォルト出力フォルダ名を取得します。
+        /// パッケージの出力フォルダ名の設定値を取得します。
         /// </summary>
         public static string PackageOutputDir => GetValue(c_PackageOutputDirDefault);
 
         /// <summary>
-        /// パッケージ化するコンテンツのフォルダ名を取得します。
+        /// パッケージ化するコンテンツのフォルダ名の設定値を取得します。
         /// </summary>
         public static string PackageContentsDir => GetValue(c_PackageContentsDirDefault);
 
         /// <summary>
-        /// パッケージのビルド結果を取得します。
+        /// パッケージのビルド結果の設定値を取得します。
         /// </summary>
         public static string PackageBuildDir => GetValue(c_PackageBuildDirDefault);
 
         /// <summary>
-        /// デフォルトのビルドターゲットを取得します。
+        /// ビルド構成の設定値を取得します。
         /// </summary>
-        public static string DefaultBuildTarget => GetValue(c_DefaultBuildTargetDefault);
+        public static string BuildTarget => GetValue(c_DefaultBuildTargetDefault);
 
         /// <summary>
-        /// デフォルトのNext Designのバージョンを取得します。
+        /// エクステンションの動作の対象となるNext Designのバージョンの設定値を取得します。
         /// </summary>
-        public static string DefaultNdVersion => GetValue(c_DefaultNdVersionDefault);
+        public static string NdVersion => GetValue(c_DefaultNdVersionDefault);
 
         #endregion
 
