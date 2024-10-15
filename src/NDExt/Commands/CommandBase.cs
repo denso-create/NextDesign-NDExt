@@ -1,56 +1,56 @@
 ﻿using NDExt.Utils;
 using System;
-using System.Collections.Generic;
 using System.CommandLine;
-using System.IO;
-using System.Reflection;
-using System.Text;
 
 namespace NDExt.Commands
 {
     /// <summary>
-    /// コマンドのベース
+    /// コマンドのベースクラスです。
     /// </summary>
     public abstract class CommandBase : Command
     {
-        #region 定数
-        /// <summary>
-        /// 成功
-        /// </summary>
-        public const int cSuccess = 0;
+        #region 定数定義
 
         /// <summary>
-        /// 失敗
+        /// 成功を表す終了コード。
         /// </summary>
-        public const int cFail = 1;
+        public const int Success = 0;
+
+        /// <summary>
+        /// 失敗を表す終了コード。
+        /// </summary>
+        public const int Fail = 1;
 
         #endregion
 
-        #region コンストラクタ
+        #region 構築・消滅
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name"></param>
-        public CommandBase(string name) : base(name) { }
+        /// <param name="name">コマンド名。</param>
+        protected CommandBase(string name) : base(name) { }
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public CommandBase(string name, string description) : base(name, description) { }
+        /// <param name="name">コマンド名。</param>
+        /// <param name="description">コマンドの説明。</param>
+        protected CommandBase(string name, string description) : base(name, description) { }
 
         #endregion
+
+        #region 内部メソッド
 
         #region 情報の取得
 
         /// <summary>
-        /// アプリケーションのベースディレクトリを取得します
+        /// アプリケーションのベースディレクトリを取得します。
         /// </summary>
-        /// <returns></returns>
         protected static string AppDir => Env.AppDir;
 
         /// <summary>
-        /// 現在のディレクトリ
+        /// 現在のディレクトリを取得します。
         /// </summary>
         protected static string CurrentDir => Env.CurrentDir;
 
@@ -59,12 +59,12 @@ namespace NDExt.Commands
         #region プロセスの実行
 
         /// <summary>
-        /// プロセスの実行
+        /// 外部プロセスを実行します。
         /// </summary>
-        /// <param name="filename"></param>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        protected static int ExcecuteProcess(string filename,string args)
+        /// <param name="filename">実行するファイル名。</param>
+        /// <param name="args">プロセスに渡す引数。</param>
+        /// <returns>プロセスの実行結果を表す終了コード。</returns>
+        protected static int ExecuteProcess(string filename, string args)
         {
             return ProcessUtil.Start(filename, args);
         }
@@ -74,13 +74,13 @@ namespace NDExt.Commands
         #region パラメータ作成
 
         /// <summary>
-        /// Argumentの追加
+        /// コマンドにArgumentを追加します。
         /// </summary>
-        /// <typeparam name="T">引数の型</typeparam>
-        /// <param name="name">引数名</param>
-        /// <param name="description">説明</param>
-        /// <returns></returns>
-        protected Argument AddArgument<T>(string name,string description)
+        /// <typeparam name="T">引数の型。</typeparam>
+        /// <param name="name">引数名。</param>
+        /// <param name="description">引数の説明。</param>
+        /// <returns>追加された引数のオブジェクト。</returns>
+        protected Argument AddArgument<T>(string name, string description)
         {
             var arg = new Argument<T>(name)
             {
@@ -91,14 +91,14 @@ namespace NDExt.Commands
         }
 
         /// <summary>
-        /// Optionの追加
+        /// コマンドにOptionを追加します。
         /// </summary>
-        /// <typeparam name="T">オプションの型</typeparam>
-        /// <param name="name">オプション名</param>
-        /// <param name="alias">エイリアス</param>
-        /// <param name="description">説明</param>
-        /// <returns></returns>
-        protected Option AddOption<T>(string name,string alias, string description)
+        /// <typeparam name="T">オプションの型。</typeparam>
+        /// <param name="name">オプション名。</param>
+        /// <param name="alias">オプションのエイリアス。</param>
+        /// <param name="description">オプションの説明。</param>
+        /// <returns>追加されたオプションのオブジェクト。</returns>
+        protected Option AddOption<T>(string name, string alias, string description)
         {
             var opt = new Option<T>(name)
             {
@@ -112,36 +112,36 @@ namespace NDExt.Commands
         #endregion
 
         #region メッセージ出力
+
         /// <summary>
-        /// エラーの出力
+        /// メッセージを標準出力に書き込みます。
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="ex"></param>
+        /// <param name="message">出力するメッセージ。</param>
         protected static void WriteLine(string message)
         {
             ConsoleUtil.WriteLine(message);
         }
 
         /// <summary>
-        /// エラーの出力
+        /// エラーメッセージを標準エラー出力に書き込みます。
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="ex"></param>
+        /// <param name="message">エラーメッセージ。</param>
+        /// <param name="ex">例外オブジェクト（省略可能）。</param>
         protected static void WriteError(string message, Exception ex = null)
         {
             ConsoleUtil.WriteError(message, ex);
         }
 
-
         /// <summary>
-        /// エラーの出力
+        /// 例外の詳細を標準エラー出力に書き込みます。
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="ex"></param>
+        /// <param name="ex">例外オブジェクト。</param>
         protected static void WriteError(Exception ex)
         {
             ConsoleUtil.WriteError(ex);
         }
+
+        #endregion
 
         #endregion
     }

@@ -1,50 +1,55 @@
 ﻿using NDExt.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NDExt.Services
 {
     /// <summary>
-    /// パッケージの実行要求オブジェクトです
+    /// パッケージの実行要求オブジェクトです。
     /// </summary>
     public class PackageRequest
     {
-        /// <summary>
-        /// 実行対象のディレクトリ
-        /// </summary>
-        public string TargetDir { get; set; } 
+        #region プロパティ
 
         /// <summary>
-        /// Debug/Release
+        /// 実行対象のディレクトリを取得または設定します。
+        /// </summary>
+        public string TargetDir { get; set; }
+
+        /// <summary>
+        /// Debug/Releaseを取得または設定します。
         /// </summary>
         public string BuildConfig { get; set; }
 
         /// <summary>
-        /// パッケージの出力先ディレクトリ名
+        /// パッケージの出力先ディレクトリ名を取得または設定します。
         /// </summary>
         public string OutputDir { get; set; }
 
         /// <summary>
-        /// コピー先ディレクトリ
+        /// コピー先ディレクトリを取得または設定します。
         /// </summary>
         public string CopyDir { get; set; }
 
         /// <summary>
-        /// 対応するNDのバージョン
+        /// 対応するNDのバージョンを取得または設定します。
         /// "3.0"など
         /// </summary>
-        public string NDVersion { get; set; } 
+        public string NDVersion { get; set; }
+
+        #endregion
+
+        #region 公開メソッド
 
         /// <summary>
-        /// 初期値をセット
+        /// 初期値をセットします。
         /// </summary>
         public void SetDefaults()
         {
-            if (string.IsNullOrEmpty(NDVersion)) NDVersion = AppSettings.DefaultNdVersion;
-            if (string.IsNullOrEmpty(BuildConfig)) BuildConfig = AppSettings.DefaultBuildTarget;
+            if (string.IsNullOrEmpty(NDVersion)) NDVersion = AppSettings.NdVersion;
+            if (string.IsNullOrEmpty(BuildConfig)) BuildConfig = AppSettings.BuildTarget;
             if (string.IsNullOrEmpty(OutputDir)) OutputDir = AppSettings.PackageOutputDir;
             if (string.IsNullOrEmpty(TargetDir)) TargetDir = Env.CurrentDir;
         }
+
+        #endregion
     }
 }

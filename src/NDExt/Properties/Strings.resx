@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TitleAppHeaderVersionInfo1" xml:space="preserve">
+    <value>Next Design Extension Utility - Version {0}</value>
+  </data>
+  <data name="ErrorCommandExecutionFailed2" xml:space="preserve">
+    <value>コマンド `{0} {1}` の実行に失敗しました。</value>
+  </data>
+  <data name="ErrorHeader1" xml:space="preserve">
+    <value>エラー: {0}</value>
+  </data>
+  <data name="ErrorProjectFileNotFound0" xml:space="preserve">
+    <value>エクステンションのプロジェクトファイル(csproj)が見つかりませんでした。</value>
+  </data>
+  <data name="StatusPackagingProject3" xml:space="preserve">
+    <value>==========&gt; Packaging Project &lt;=========================
+[in] Target Project: {0}
+[in] Build Target: {1}
+[in] ND Version: {2} 
+========================================================</value>
+  </data>
+  <data name="HeaderBuildProject0" xml:space="preserve">
+    <value>Build Project</value>
+  </data>
+  <data name="HeaderPackaging0" xml:space="preserve">
+    <value>Packaging</value>
+  </data>
+  <data name="ErrorNugetNotFound0" xml:space="preserve">
+    <value>nuget.exe が見つからないため、パッケージ処理が実行できませんでした。https://www.nuget.org/downloads から nuget.exe をダウンロードし、適切なフォルダーに保存して、そのフォルダーを PATH 環境変数に追加してください。</value>
+  </data>
+  <data name="HeaderCopyNupkg0" xml:space="preserve">
+    <value>Copy nupkg</value>
+  </data>
+  <data name="HeaderDone0" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="LogPackagingCompleted0" xml:space="preserve">
+    <value>パッケージ化を完了しました。</value>
+  </data>
+  <data name="ErrorPackageIdNotSpecified0" xml:space="preserve">
+    <value>csprojファイルにパッケージId（`PackageId`）を指定して下さい。</value>
+  </data>
+  <data name="ErrorAuthorsNotSpecified0" xml:space="preserve">
+    <value>csprojファイルに作成者（`Authors`）を指定して下さい。</value>
+  </data>
+  <data name="ErrorVersionNotSpecified0" xml:space="preserve">
+    <value>csprojファイルでパッケージバージョンが指定されていません。バージョン（`Version`）を指定して下さい。</value>
+  </data>
+  <data name="ErrorDescriptionNotSpecified0" xml:space="preserve">
+    <value>csprojファイルで説明（`Description`）を指定して下さい。</value>
+  </data>
+  <data name="DescriptionInstallCommand0" xml:space="preserve">
+    <value>プロジェクトのテンプレートをインストールします。最初に実行して下さい。</value>
+  </data>
+  <data name="HeaderInstallingTemplates0" xml:space="preserve">
+    <value>テンプレートをインストールしています...</value>
+  </data>
+  <data name="LogInstallationCompleted0" xml:space="preserve">
+    <value>完了しました。
+* `ndext new` `ndext new-*` コマンドでNext Designのエクステンションが作成できます。
+* `dotnet new` コマンドでもエクステンションが作成できます。</value>
+  </data>
+  <data name="DescriptionNewCommand0" xml:space="preserve">
+    <value>現在のフォルダに最新のNext Design向けのエクステンションのプロジェクトを作成します。</value>
+  </data>
+  <data name="DescriptionTemplateStandardExtensionV4_0" xml:space="preserve">
+    <value>Next Design V4.0向けの標準のエクステンションです。</value>
+  </data>
+  <data name="DescriptionNewExtpCommand0" xml:space="preserve">
+    <value>現在のフォルダにExtensionPointsライブラリを用いた最新のNext Design向けのエクステンションのプロジェクトを作成します。</value>
+  </data>
+  <data name="DescriptionTemplateExtpStandardExtensionV4_0" xml:space="preserve">
+    <value>Next Design V4.0向けのExtensionPointsライブラリを用いたエクステンションです（推奨）。</value>
+  </data>
+  <data name="DescriptionNewCommandProjectName0" xml:space="preserve">
+    <value>作成プロジェクト名を指定して下さい。</value>
+  </data>
+  <data name="HeaderCreatingExtensionProjectDetails3" xml:space="preserve">
+    <value>Creating Next Design Extension Solution &amp; Project
+
+Project Name: '{0}'
+Template Type: '{1}'
+Template Description: '{2}'</value>
+  </data>
+  <data name="LogCompletion0" xml:space="preserve">
+    <value>完了しました。</value>
+  </data>
+  <data name="LogSolutionFileDetected1" xml:space="preserve">
+    <value>ソリューションファイル `{0}` を検出しました。このファイルにプロジェクトを追加します。</value>
+  </data>
+  <data name="LogCreatingSolutionFile1" xml:space="preserve">
+    <value>ソリューションファイルを作成します。 {0}</value>
+  </data>
+  <data name="ErrorProjectFileAlreadyExists0" xml:space="preserve">
+    <value>プロジェクトファイルがすでに存在しているため処理を中止します。</value>
+  </data>
+  <data name="ErrorProjectFileCreationFailed0" xml:space="preserve">
+    <value>プロジェクトファイルの作成に失敗しました。</value>
+  </data>
+  <data name="LogProjectFileCreated2" xml:space="preserve">
+    <value>{0}に `{1}` を作成しました。</value>
+  </data>
+  <data name="DescriptionPackCommand0" xml:space="preserve">
+    <value>エクステンションをパッケージ化します。</value>
+  </data>
+  <data name="DescriptionPackCommandProjectDir0" xml:space="preserve">
+    <value>対象プロジェクトのディレクトリを指定します。未指定の場合は現在のディレクトリ以下を探索して実行します。</value>
+  </data>
+  <data name="DescriptionPackCommandNDVersion1" xml:space="preserve">
+    <value>動作の対象となるNext Designのバージョンです。未指定の場合は `{0}` です。</value>
+  </data>
+  <data name="DescriptionPackCommandBuildConfig1" xml:space="preserve">
+    <value>ビルド構成を指定します。`Debug`または`Release`を指定して下さい。未指定の場合は `{0}` です。</value>
+  </data>
+  <data name="DescriptionPackCommandOutputDir1" xml:space="preserve">
+    <value>作成したパッケージの格納フォルダを指定します。未指定の場合は `{0}` です。</value>
+  </data>
+  <data name="DescriptionPackCommandCopyDir0" xml:space="preserve">
+    <value>作成したパッケージを指定フォルダにもコピーします。</value>
+  </data>
+  <data name="StatusPackagingExtension0" xml:space="preserve">
+    <value>エクステンションをパッケージ化しています...</value>
+  </data>
+  <data name="DescriptionUninstallCommand0" xml:space="preserve">
+    <value>プロジェクトのテンプレートをアンインストールします。</value>
+  </data>
+  <data name="HeaderTemplateUninstalling0" xml:space="preserve">
+    <value>テンプレートをアンインストールしています...</value>
+  </data>
+  <data name="DescriptionCreateExtensionUtility0" xml:space="preserve">
+    <value>Next Designのエクステンションを作成できるユーティリティです。</value>
+  </data>
+  <data name="DescriptionNew31Command0" xml:space="preserve">
+    <value>現在のフォルダにNext Design V3.1向けのエクステンションのプロジェクトを作成します。</value>
+  </data>
+  <data name="DescriptionNew4Command0" xml:space="preserve">
+    <value>現在のフォルダにNext Design V4.0向けのエクステンションのプロジェクトを作成します。</value>
+  </data>
+  <data name="DescriptionNew4ExtpCommand0" xml:space="preserve">
+    <value>現在のフォルダにExtensionPointsライブラリを用いたNext Design V4.0向けのエクステンションのプロジェクトを作成します。</value>
+  </data>
+  <data name="DescriptionNew31ExtpCommand0" xml:space="preserve">
+    <value>現在のフォルダにExtensionPointsライブラリを用いたNext Design V3.1向けのエクステンションのプロジェクトを作成します。</value>
+  </data>
+  <data name="DescriptionTemplateExtpStandardExtensionV31_0" xml:space="preserve">
+    <value>Next Design V3.1向けのExtensionPointsライブラリを用いたエクステンションです（推奨）。</value>
+  </data>
+  <data name="DescriptionTemplateStandardExtensionV31_0" xml:space="preserve">
+    <value>Next Design V3.1向けの標準のエクステンションです。</value>
+  </data>
+</root>

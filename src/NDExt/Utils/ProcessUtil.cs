@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NDExt.Properties;
 using System.Diagnostics;
-using System.Text;
 
 namespace NDExt.Utils
 {
@@ -10,35 +8,38 @@ namespace NDExt.Utils
     /// </summary>
     internal static class ProcessUtil
     {
-        /// <summary>
-        /// プロセスを実行します。
-        /// </summary>
-        /// <param name="filename"></param>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public static int Start(string filename,string args)
-        {
-            //ConsoleUtil.WriteLine($"Command: {filename} {args}");
+        #region 公開メソッド
 
-            // git pull実行
+        /// <summary>
+        /// 指定されたプロセスを実行します。
+        /// </summary>
+        /// <param name="filename">実行するファイル名。</param>
+        /// <param name="args">コマンドに渡す引数。</param>
+        /// <returns>プロセスの終了コードを返します。</returns>
+        /// <exception cref="UserException">プロセスが失敗した場合にスローされます。</exception>
+        public static int Start(string filename, string args)
+        {
             var startInfo = new ProcessStartInfo()
             {
                 FileName = filename,
                 Arguments = args,
-                //CreateNoWindow = false,
-                //UseShellExecute = false,
+                // CreateNoWindow = false,
+                // UseShellExecute = false,
             };
 
+            // プロセスを開始し、終了まで待機
             var process = Process.Start(startInfo);
             process.WaitForExit();
 
-
+            // 終了コードが0以外の場合は例外をスロー
             if (process.ExitCode != 0)
             {
-                throw new UserException($"コマンド `{filename} {args}`の実行に失敗しました。 ");
+                throw new UserException(string.Format(Strings.ErrorCommandExecutionFailed2, filename, args));
             }
 
             return process.ExitCode;
         }
+
+        #endregion
     }
 }

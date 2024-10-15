@@ -1,19 +1,15 @@
-﻿using NDExt.Commands;
-using System;
-using System.CommandLine;
-using System.Reflection;
-
-namespace NDExt
+﻿namespace NDExt
 {
     /// <summary>
-    /// エントリポイント
+    /// アプリケーションのエントリポイントクラスです。
     /// </summary>
     class Program
     {
         /// <summary>
-        /// 開始
+        /// アプリケーションの開始メソッド。コマンドライン引数を受け取り、アプリケーションを実行します。
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">コマンドライン引数。</param>
+        /// <returns>アプリケーションの終了コード。</returns>
         static int Main(string[] args)
         {
             var app = new NDExtApp();

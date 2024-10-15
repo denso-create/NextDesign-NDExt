@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Text;
 
 namespace NDExt.Utils
 {
@@ -11,10 +9,11 @@ namespace NDExt.Utils
     /// </summary>
     internal static class Env
     {
+        #region プロパティ
+
         /// <summary>
-        /// アプリケーションのベースディレクトリを取得します
+        /// アプリケーションの実行ファイルが配置されているベースディレクトリを取得します。
         /// </summary>
-        /// <returns></returns>
         public static string AppDir
         {
             get
@@ -25,15 +24,10 @@ namespace NDExt.Utils
         }
 
         /// <summary>
-        /// 現在のディレクトリ
+        /// 現在のディレクトリを取得します。
         /// </summary>
-        public static string CurrentDir
-        {
-            get
-            {
-                return Environment.CurrentDirectory;
-            }
-        }
+        public static string CurrentDir => Environment.CurrentDirectory;
 
+        #endregion
     }
 }

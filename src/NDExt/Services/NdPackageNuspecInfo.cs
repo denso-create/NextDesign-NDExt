@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NDExt.Properties;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Xml;
 
@@ -12,48 +10,98 @@ namespace NDExt.Services
     /// </summary>
     public class NdPackageNuspecInfo
     {
-        public NdPackageNuspecInfo()
-        {
-        }
+        #region 定数定義
 
         /// <summary>
-        /// パッケージId
+        /// Nuspecのプロジェクトノードを示すXMLノード名。
+        /// </summary>
+        private const string c_ProjectNodeName = "Project";
+
+        /// <summary>
+        /// NuspecのパッケージIDを示すXMLノード名。
+        /// </summary>
+        private const string c_PackageIdNodeName = "packageid";
+
+        /// <summary>
+        /// Nuspecのバージョンを示すXMLノード名。
+        /// </summary>
+        private const string c_VersionNodeName = "version";
+
+        /// <summary>
+        /// Nuspecの説明を示すXMLノード名。
+        /// </summary>
+        private const string c_DescriptionNodeName = "description";
+
+        /// <summary>
+        /// NuspecのプロジェクトURLを示すXMLノード名。
+        /// </summary>
+        private const string c_PackageProjectUrlNodeName = "packageprojecturl";
+
+        /// <summary>
+        /// Nuspecの著者情報を示すXMLノード名。
+        /// </summary>
+        private const string c_AuthorsNodeName = "authors";
+
+        /// <summary>
+        /// Nuspecの著作権情報を示すXMLノード名。
+        /// </summary>
+        private const string c_CopyrightNodeName = "copyright";
+
+        #endregion
+
+        #region 構築・消滅
+
+        /// <summary>
+        /// コンストラクタ。
+        /// </summary>
+        public NdPackageNuspecInfo() { }
+
+        #endregion
+
+        #region プロパティ
+
+        /// <summary>
+        /// パッケージIdを取得または設定します。
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 説明
+        /// 説明を取得または設定します。
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// Url
+        /// Urlを取得または設定します。
         /// </summary>
         public string ProjectUrl { get; set; }
 
         /// <summary>
-        /// バージョン
+        /// バージョンを取得または設定します。
         /// </summary>
         public string Version { get; set; }
 
         /// <summary>
-        /// Copyright
+        /// Copyrightを取得または設定します。
         /// </summary>
         public string Copyright { get; set; }
 
         /// <summary>
-        /// Authors
+        /// Authorsを取得または設定します。
         /// </summary>
         public string Authors { get; set; }
 
+        #endregion
+
+        #region 公開メソッド
+
         /// <summary>
-        /// Xml文字列として戻します
+        /// NuspecのメタデータをXML形式の文字列として返します。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>メタデータを表すXML文字列。</returns>
         public string ToXmlString()
         {
             var xml =
-@$"<?xml version=""1.0"" encoding=""utf - 8""?>
+                @$"<?xml version=""1.0"" encoding=""utf - 8""?>
   <package xmlns = ""http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd"" >
   <metadata>
     <id>{Id}</id>
@@ -72,87 +120,96 @@ namespace NDExt.Services
         }
 
         /// <summary>
-        /// ファイルに保存します
+        /// Nuspec情報を指定されたファイルパスに保存します。
         /// </summary>
-        /// <param name="filepath"></param>
+        /// <param name="filepath">保存先のファイルパス。</param>
         public void SaveToFile(string filepath)
         {
             var xml = ToXmlString();
             File.WriteAllText(filepath, xml, Encoding.UTF8);
-
         }
 
         /// <summary>
-        /// Nuspec情報を抜き出します
+        /// 指定されたプロジェクトファイルからNuspec情報を抽出して返します。
         /// </summary>
-        /// <param name="projectFilePath"></param>
-        /// <returns></returns>
+        /// <param name="projectFilePath">プロジェクトファイルのパス。</param>
+        /// <returns>Nuspec情報を格納した <see cref="NdPackageNuspecInfo"/> オブジェクト。</returns>
         public static NdPackageNuspecInfo CreateFromProjectFile(string projectFilePath)
         {
+            // XMLドキュメントを読み込みプロジェクトノードを取得する
             var projectXml = new XmlDocument();
             projectXml.Load(projectFilePath);
-            var projectNode = projectXml.SelectSingleNode("Project");
+            var projectNode = projectXml.SelectSingleNode(c_ProjectNodeName);
+
             var nuspec = new NdPackageNuspecInfo();
 
+            // プロジェクト内の全ての子ノードを走査する
             foreach (XmlNode node in projectNode.ChildNodes)
             {
-
-                // 情報を抜き出します
                 foreach (XmlNode item in node.ChildNodes)
                 {
+                    // ノードの名前と内容を取得しオブジェクトに設定
                     var name = item.Name.ToLower();
                     var val = item.InnerText;
-
-                    if (val == null) continue;
-
-                    // 改行コードを統一します
-                    val = val.Replace("\r\n", "\n");
-
-                    switch (name)
-                    {
-                        case "packageid":
-                            nuspec.Id = val;
-                            break;
-
-                        case "version":
-                            nuspec.Version = val;
-                            break;
-
-                        case "description":
-                            nuspec.Description = val;
-                            break;
-
-                        case "packageprojecturl":
-                            nuspec.ProjectUrl = val;
-                            break;
-
-                        case "authors":
-                            nuspec.Authors= val;
-                            break;
-
-                        case "copyright":
-                            nuspec.Copyright= val;
-                            break;
-                    }
+                    SetNuspecProperty(ref nuspec, name, val);
                 }
             }
 
             return nuspec;
         }
 
-
         /// <summary>
-        /// エラーチェック
+        /// 必要なNuspec情報が正しく指定されているかチェックします。
         /// </summary>
+        /// <exception cref="UserException">必須のフィールドが指定されていない場合にスローされます。</exception>
         public void CheckErrors()
         {
             // エラーチェック
-            if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルにパッケージId（`PackageId`）を指定して下さい。");
-            if (string.IsNullOrEmpty(Id)) throw new UserException($"csprojファイルに作成者（`Authors`）を指定して下さい。");
-            if (string.IsNullOrEmpty(Description)) throw new UserException($"csprojファイルで説明（`Description`）を指定して下さい。");
-            if (string.IsNullOrEmpty(Version)) throw new UserException($"csprojファイルでパッケージバージョンが指定されていません。バージョン（`Version`）を指定して下さい。");
-
+            if (string.IsNullOrEmpty(Id)) throw new UserException(Strings.ErrorPackageIdNotSpecified0);
+            if (string.IsNullOrEmpty(Authors)) throw new UserException(Strings.ErrorAuthorsNotSpecified0);
+            if (string.IsNullOrEmpty(Description)) throw new UserException(Strings.ErrorDescriptionNotSpecified0);
+            if (string.IsNullOrEmpty(Version)) throw new UserException(Strings.ErrorVersionNotSpecified0);
         }
-    }
 
+        #endregion
+
+        #region 内部メソッド
+
+        /// <summary>
+        /// 指定されたNuspecオブジェクトのプロパティに、XMLノードの内容を設定します。
+        /// </summary>
+        /// <param name="nuspec">Nuspec情報を格納するオブジェクト。</param>
+        /// <param name="name">XMLノード名。</param>
+        /// <param name="value">XMLノードの内容。</param>
+        private static void SetNuspecProperty(ref NdPackageNuspecInfo nuspec, string name, string value)
+        {
+            // 改行コードを統一します
+            value = value.Replace("\r\n", "\n");
+
+            // Nuspec情報をオブジェクトに設定
+            switch (name)
+            {
+                case c_PackageIdNodeName:
+                    nuspec.Id = value;
+                    break;
+                case c_VersionNodeName:
+                    nuspec.Version = value;
+                    break;
+                case c_DescriptionNodeName:
+                    nuspec.Description = value;
+                    break;
+                case c_PackageProjectUrlNodeName:
+                    nuspec.ProjectUrl = value;
+                    break;
+                case c_AuthorsNodeName:
+                    nuspec.Authors = value;
+                    break;
+                case c_CopyrightNodeName:
+                    nuspec.Copyright = value;
+                    break;
+            }
+        }
+
+        #endregion
+    }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace NDExt.Utils
 {
@@ -10,15 +7,22 @@ namespace NDExt.Utils
     /// </summary>
     internal static class ProjectTemplateUtil
     {
-        /// <summary>
-        /// プロジェクトテンプレートのパッケージファイル
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<string> GetTemplatePackages()
-        {
-            var packages = new string[] { "NextDesign.Extension.ProjectTemplates" };
-            return packages;
-        }
+        #region 定数定義
 
+        /// <summary>
+        /// NextDesignのプロジェクトテンプレート名。
+        /// </summary>
+        private const string c_NextDesignProjectTemplates = "NextDesign.Extension.ProjectTemplates";
+
+        #endregion
+
+        #region 公開メソッド
+
+        /// <summary>
+        /// プロジェクトテンプレートのパッケージファイルの列挙を取得します。
+        /// </summary>
+        public static IEnumerable<string> GetTemplatePackages() => new[] { c_NextDesignProjectTemplates };
+
+        #endregion
     }
 }
