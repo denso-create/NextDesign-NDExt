@@ -19,7 +19,7 @@ namespace NDExt.Commands
         #region プロパティ
 
         /// <inheritdoc />
-        protected override string TemplateName => "nd4extp";
+        protected override string TemplateName => "ndextp";
 
         /// <inheritdoc />
         protected override string TemplateDescription => Strings.DescriptionTemplateExtpStandardExtensionV4_0;
