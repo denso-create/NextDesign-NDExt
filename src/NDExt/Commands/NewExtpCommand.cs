@@ -22,7 +22,7 @@ namespace NDExt.Commands
         protected override string TemplateName => "ndextp";
 
         /// <inheritdoc />
-        protected override string TemplateDescription => Strings.DescriptionTemplateExtpStandardExtensionV4_0;
+        protected override string TemplateDescription => Strings.DescriptionTemplateExtpStandardExtension0;
 
         #endregion
     }
