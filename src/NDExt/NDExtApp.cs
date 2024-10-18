@@ -52,11 +52,7 @@ namespace NDExt
                 // サブコマンドの登録
                 rootCommand.AddCommand(new InstallCommand());
                 rootCommand.AddCommand(new NewCommand());
-                rootCommand.AddCommand(new New31Command());
-                rootCommand.AddCommand(new New4Command());
                 rootCommand.AddCommand(new NewExtpCommand());
-                rootCommand.AddCommand(new New31ExtpCommand());
-                rootCommand.AddCommand(new New4ExtpCommand());
                 rootCommand.AddCommand(new PackCommand());
                 rootCommand.AddCommand(new UninstallCommand());
 
