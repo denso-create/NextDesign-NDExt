@@ -178,16 +178,16 @@
 * `dotnet new` コマンドでもエクステンションが作成できます。</value>
   </data>
   <data name="DescriptionNewCommand0" xml:space="preserve">
-    <value>現在のフォルダに最新のNext Design向けのエクステンションのプロジェクトを作成します。</value>
+    <value>現在のフォルダにNext Designのエクステンションのプロジェクトを作成します。</value>
   </data>
-  <data name="DescriptionTemplateStandardExtensionV4_0" xml:space="preserve">
-    <value>Next Design V4.0向けの標準のエクステンションです。</value>
+  <data name="DescriptionTemplateStandardExtension0" xml:space="preserve">
+    <value>Next Designの標準のエクステンションです。</value>
   </data>
   <data name="DescriptionNewExtpCommand0" xml:space="preserve">
-    <value>現在のフォルダにExtensionPointsライブラリを用いた最新のNext Design向けのエクステンションのプロジェクトを作成します。</value>
+    <value>現在のフォルダにExtensionPointsライブラリを用いたエクステンションのプロジェクトを作成します。</value>
   </data>
-  <data name="DescriptionTemplateExtpStandardExtensionV4_0" xml:space="preserve">
-    <value>Next Design V4.0向けのExtensionPointsライブラリを用いたエクステンションです（推奨）。</value>
+  <data name="DescriptionTemplateExtpStandardExtension0" xml:space="preserve">
+    <value>ExtensionPointsライブラリを用いたエクステンションです（推奨）。</value>
   </data>
   <data name="DescriptionNewCommandProjectName0" xml:space="preserve">
     <value>作成プロジェクト名を指定して下さい。</value>
@@ -246,23 +246,5 @@ Template Description: '{2}'</value>
   </data>
   <data name="DescriptionCreateExtensionUtility0" xml:space="preserve">
     <value>Next Designのエクステンションを作成できるユーティリティです。</value>
-  </data>
-  <data name="DescriptionNew31Command0" xml:space="preserve">
-    <value>現在のフォルダにNext Design V3.1向けのエクステンションのプロジェクトを作成します。</value>
-  </data>
-  <data name="DescriptionNew4Command0" xml:space="preserve">
-    <value>現在のフォルダにNext Design V4.0向けのエクステンションのプロジェクトを作成します。</value>
-  </data>
-  <data name="DescriptionNew4ExtpCommand0" xml:space="preserve">
-    <value>現在のフォルダにExtensionPointsライブラリを用いたNext Design V4.0向けのエクステンションのプロジェクトを作成します。</value>
-  </data>
-  <data name="DescriptionNew31ExtpCommand0" xml:space="preserve">
-    <value>現在のフォルダにExtensionPointsライブラリを用いたNext Design V3.1向けのエクステンションのプロジェクトを作成します。</value>
-  </data>
-  <data name="DescriptionTemplateExtpStandardExtensionV31_0" xml:space="preserve">
-    <value>Next Design V3.1向けのExtensionPointsライブラリを用いたエクステンションです（推奨）。</value>
-  </data>
-  <data name="DescriptionTemplateStandardExtensionV31_0" xml:space="preserve">
-    <value>Next Design V3.1向けの標準のエクステンションです。</value>
   </data>
 </root>
