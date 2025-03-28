@@ -1,26 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using NDExt.Properties;
 
 namespace NDExt.Commands
 {
     /// <summary>
-    /// 新規作成コマンド
+    /// エクステンションプロジェクトの新規作成を実行するコマンドクラスです。
     /// </summary>
     public class NewCommand : NewCommandBase
     {
+        #region 構築・消滅
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public NewCommand() : base("new", "現在のフォルダにNext Designのエクステンションのプロジェクトを作成します。") { }
+        public NewCommand() : base("new", Strings.DescriptionNewCommand0) { }
 
+        #endregion
+
+        #region プロパティ
 
         /// <inheritdoc/>
         protected override string TemplateName => "ndext";
 
         /// <inheritdoc/>
-        protected override string TemplateDescription => "Next Designの標準のエクステンションです。";
+        protected override string TemplateDescription => Strings.DescriptionTemplateStandardExtension0;
+
+        #endregion
     }
 }

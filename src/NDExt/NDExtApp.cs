@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using NDExt.Commands;
+using NDExt.Properties;
 using NDExt.Utils;
 using System;
-using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Builder;
 using System.Reflection;
-using System.Text;
 
 namespace NDExt
 {
@@ -15,10 +13,27 @@ namespace NDExt
     /// </summary>
     internal class NDExtApp
     {
+        #region 定数定義
+
         /// <summary>
-        /// 開始
+        /// アプリケーション名。
         /// </summary>
-        /// <param name="args"></param>
+        private const string c_AppName = "NDExt";
+
+        /// <summary>
+        /// 設定ファイル名。
+        /// </summary>
+        private const string c_SettingFileName = "settings.json";
+
+        #endregion
+
+        #region 公開メソッド
+
+        /// <summary>
+        /// アプリケーションのエントリポイント。アプリケーションの開始を処理します。
+        /// </summary>
+        /// <param name="args">コマンドライン引数。</param>
+        /// <returns>アプリケーションの実行結果コード。</returns>
         public int Start(string[] args)
         {
             try
@@ -29,15 +44,15 @@ namespace NDExt
                 // ヘッダ出力
                 WriteAppHeader();
 
-                var rootCommand = new RootCommand("NDExt")
+                var rootCommand = new RootCommand(c_AppName)
                 {
-                    Description = "Next Designのエクステンションを作成できるユーティリティです。"
+                    Description = Strings.DescriptionCreateExtensionUtility0
                 };
 
                 // サブコマンドの登録
                 rootCommand.AddCommand(new InstallCommand());
                 rootCommand.AddCommand(new NewCommand());
-                rootCommand.AddCommand(new NewExtpommand());
+                rootCommand.AddCommand(new NewExtpCommand());
                 rootCommand.AddCommand(new PackCommand());
                 rootCommand.AddCommand(new UninstallCommand());
 
@@ -54,15 +69,18 @@ namespace NDExt
             return 0;
         }
 
+        #endregion
+
+        #region 内部メソッド
 
         /// <summary>
-        /// 設定の初期化
+        /// アプリケーションの設定を初期化します。
         /// </summary>
         private void Configure()
         {
             var config = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("settings.json")
+                .AddJsonFile(c_SettingFileName)
                 .AddEnvironmentVariables()
                 .Build();
 
@@ -71,19 +89,14 @@ namespace NDExt
         }
 
         /// <summary>
-        /// ヘッダの出力
+        /// アプリケーションのヘッダ情報をコンソールに出力します。
         /// </summary>
         private void WriteAppHeader()
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version;
-
-            ConsoleUtil.WriteLine($"# ===============================================================");
-            ConsoleUtil.WriteLine($"#");
-            ConsoleUtil.WriteLine($"# Next Design Extension Utility - Version {version}");
-            ConsoleUtil.WriteLine($"#");
-            ConsoleUtil.WriteLine($"# ===============================================================");
+            ConsoleUtil.WriteCommandHeader(string.Format(Strings.TitleAppHeaderVersionInfo1, version));
         }
 
-
+        #endregion
     }
 }

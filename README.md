@@ -12,11 +12,11 @@ Next Designのエクステンションの開発を支援するコマンドライ
 - [ライセンス](#ライセンス)
 
 > **Notice:**
-> 本ツールはNext Design V2が対象としています。
+> 本ツールはNext Design V2以降を対象としています。
 > Next Design V1.Xでは利用できません。
 
 ## 必要環境
-* このプログラムを動作させるには [.NET Core 3.1のSdk](https://dotnet.microsoft.com/download/dotnet/3.1)およびnuget.exeのインストールが必要です。
+* このプログラムを動作させるには [.NET8のSdk](https://dotnet.microsoft.com/ja-jp/download/dotnet/8.0)およびnuget.exeのインストールが必要です。
 * nuget.exe は[公式サイト](https://www.nuget.org/downloads)からダウンロードし、適切なフォルダーに保存して、そのフォルダーを PATH 環境変数に追加してください（パスの設定が通っていないと正しく動作しません）。
 
 ## インストール方法
@@ -75,6 +75,7 @@ nuget.orgへの公開方法を説明します。
 
 ### Github Actionsによる公開
 * `publish`ブランチにマージすると自動的に https://www.nuget.org/packages/NDExt に公開されます。
+  * `main`ブランチから`publish`ブランチにマージするためのプルリクを作成し、管理者にApproveしてもらったのちにマージする。
 * [publish to nugetアクション](https://github.com/denso-create/NextDesign-NDExt/actions/workflows/publish.yml)で実行しています。
 
 ## 参照

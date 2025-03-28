@@ -1,66 +1,116 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using NDExt.Properties;
+using System;
 
 namespace NDExt.Utils
 {
+    /// <summary>
+    /// コンソール出力のユーティリティです。
+    /// </summary>
     public static class ConsoleUtil
     {
-        private const int cDefaultSeparatorCount = 60;
+        #region 定数定義
 
+        /// <summary>
+        /// セパレータの個数。
+        /// </summary>
+        private const int c_DefaultSeparatorCount = 60;
+
+        /// <summary>
+        /// セパレータに使用する文字列。
+        /// </summary>
+        private const char c_DefaultSeparatorChar = '-';
+
+        /// <summary>
+        /// コマンドヘッダのセパレータに使用する文字列。
+        /// </summary>
+        private const char c_CommandHeaderSeparatorChar = '=';
+
+        #endregion
+
+        #region 公開メソッド
+
+        /// <summary>
+        /// コマンドのヘッダを出力します。
+        /// </summary>
+        /// <param name="message">ヘッダメッセージ。</param>
         public static void WriteCommandHeader(string message)
         {
-            WriteHeader(message, '=');
-            Console.WriteLine($"");
-        }
-
-        public static void WriteSeparator(char separator='=',int count= cDefaultSeparatorCount)
-        {
-            var line = new string(separator, count);
-            Console.WriteLine($"#{line}");
-        }
-
-
-        public static void WriteHeader(string message, char separator = '-', int count = cDefaultSeparatorCount)
-        {
-            var line = new string(separator, count);
-            Console.WriteLine($"");
-            Console.WriteLine($"#{line}");
-            Console.WriteLine($"# {message}");
-            Console.WriteLine($"#{line}");
+            WriteHeader(message, c_CommandHeaderSeparatorChar, includePadding: true);
+            WriteLine();
         }
 
         /// <summary>
-        /// エラーの出力
+        /// 指定した個数のセパレータを出力します。
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="ex"></param>
-        public static void WriteLine(string message)
+        /// <param name="separator">使用するセパレータ文字。既定値は<see cref="c_DefaultSeparatorChar"/>です。</param>
+        /// <param name="count">出力するセパレータの個数。既定値は<see cref="c_DefaultSeparatorCount"/>です。</param>
+        public static void WriteSeparator(char separator = c_DefaultSeparatorChar, int count = c_DefaultSeparatorCount)
         {
-            Console.WriteLine($"{message}");
+            var line = new string(separator, count);
+            WriteLine($"#{line}");
         }
 
+        /// <summary>
+        /// ヘッダメッセージをセパレータで囲んで出力します。
+        /// </summary>
+        /// <param name="message">ヘッダとして出力するメッセージ。</param>
+        /// <param name="separator">セパレータとして使用する文字。既定値は<see cref="c_DefaultSeparatorChar"/>です。</param>
+        /// <param name="count">セパレータの個数。既定値は<see cref="c_DefaultSeparatorCount"/>です。</param>
+        /// <param name="includePadding">メッセージの前後に空行を挿入するかどうか。デフォルトは<see langword="false"/>です。</param>
+        public static void WriteHeader(string message, char separator = c_DefaultSeparatorChar, int count = c_DefaultSeparatorCount, bool includePadding = false)
+        {
+            WriteLine();
+            WriteSeparator(separator, count);
+            if (includePadding)
+            {
+                WriteLine("#");
+            }
+
+            // メッセージを改行で分割し、それぞれの行に対して処理
+            var lines = message.Split('\n');
+            foreach (var line in lines)
+            {
+                WriteLine($"# {line.Trim()}");
+            }
+
+            if (includePadding)
+            {
+                WriteLine("#");
+            }
+            WriteSeparator(separator, count);
+        }
+
+        /// <summary>
+        /// 指定されたメッセージをコンソールに出力します。
+        /// </summary>
+        /// <param name="message">出力するメッセージ。</param>
+        public static void WriteLine(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        /// <summary>
+        /// 空行を出力します。
+        /// </summary>
         public static void WriteLine()
         {
             WriteLine("");
         }
 
         /// <summary>
-        /// エラーの出力
+        /// エラーを出力します。
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="ex"></param>
+        /// <param name="message">出力するエラーメッセージ。</param>
         public static void WriteError(string message)
         {
-            Console.WriteLine($"Error: {message}");
+            WriteLine(string.Format(Strings.ErrorHeader1, message));
         }
 
-
         /// <summary>
-        /// エラーの出力
+        /// エラーを出力します。
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="ex"></param>
+        /// <param name="message">エラーメッセージ。</param>
+        /// <param name="ex">発生した例外オブジェクト。</param>
         public static void WriteError(string message, Exception ex)
         {
             if (ex == null)
@@ -74,12 +124,14 @@ namespace NDExt.Utils
         }
 
         /// <summary>
-        /// エラーの出力
+        /// エラーを出力します。
         /// </summary>
-        /// <param name="ex"></param>
+        /// <param name="ex">発生した例外オブジェクト。</param>
         public static void WriteError(Exception ex)
         {
-            WriteError($"{ex.Message}");
+            WriteError(ex.Message);
         }
+
+        #endregion
     }
 }

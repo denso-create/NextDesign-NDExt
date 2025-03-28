@@ -1,40 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.CommandLine;
+﻿using NDExt.Services;
+using System;
 using System.CommandLine.Invocation;
-using System.IO;
-using NDExt.Utils;
-using NDExt.Services;
+using NDExt.Properties;
 
 namespace NDExt.Commands
 {
     /// <summary>
-    /// エクステンションのパッケージ化
+    /// エクステンションのパッケージ化を実行するコマンドクラスです。
     /// </summary>
     public class PackCommand : CommandBase
     {
-        public PackCommand() : base("pack", "エクステンションをパッケージ化します。")
-        {
-            AddOption<string>("--project", "-p", $"対象プロジェクトのディレクトリを指定します。未指定の場合は現在のディレクトリ以下を探索して実行します。");
-            AddOption<string>("--ndver", "-v", $"動作の対象となるNext Designのバージョンです。未指定の場合は `{AppSettings.DefaultNdVersion}` です。");
-            AddOption<string>("--config", "-c", $"ビルド構成を指定します。`Debug`または`Release`を指定して下さい。未指定の場合は`{AppSettings.DefaultBuildTarget}` です。");
-            AddOption<string>("--output", "-o", $"作成したパッケージの格納フォルダを指定します。未指定の場合は `{AppSettings.PackageOutputDir}` です。");
-            AddOption<string>("--copydir", "-d", $"作成したパッケージを指定フォルダにもコピーします。");
-
-            Handler = CommandHandler.Create<string,string,string,string,string>(Handle);
-        }
+        #region 構築・消滅
 
         /// <summary>
-        /// コマンドハンドラ
+        /// コンストラクタ。
         /// </summary>
-        /// <returns></returns>
-        private int Handle(string project,string ndver,string config,string output,string copydir)
+        public PackCommand() : base("pack", Strings.DescriptionPackCommand0)
+        {
+            AddOption<string>("--project", "-p", Strings.DescriptionPackCommandProjectDir0);
+            AddOption<string>("--ndver", "-v", string.Format(Strings.DescriptionPackCommandNDVersion1, AppSettings.NdVersion));
+            AddOption<string>("--config", "-c", string.Format(Strings.DescriptionPackCommandBuildConfig1, AppSettings.BuildTarget));
+            AddOption<string>("--output", "-o", string.Format(Strings.DescriptionPackCommandOutputDir1, AppSettings.PackageOutputDir));
+            AddOption<string>("--copydir", "-d", Strings.DescriptionPackCommandCopyDir0);
+
+            Handler = CommandHandler.Create<string, string, string, string, string>(Handle);
+        }
+
+        #endregion
+
+        #region 内部メソッド
+
+        /// <summary>
+        /// エクステンションのパッケージ化処理を実行するハンドラメソッド。
+        /// </summary>
+        /// <see cref="project">対象プロジェクトのディレクトリ。</see>
+        /// <see cref="ndver">動作の対象となるNext Designのバージョン。</see>
+        /// <see cref="config">ビルド構成。</see>
+        /// <see cref="output">作成したパッケージの格納フォルダ。</see>
+        /// <see cref="copydir">作成したパッケージのコピー先フォルダ。</see>
+        /// <returns>終了コード。成功時は<see cref="CommandBase.Success"/>、失敗時は<see cref="CommandBase.Fail"/>を返します。</returns>
+        private int Handle(string project, string ndver, string config, string output, string copydir)
         {
             try
             {
-
-                WriteLine("エクステンションをパッケージ化しています...");
+                WriteLine(Strings.StatusPackagingExtension0);
 
                 var request = new PackageRequest()
                 {
@@ -51,14 +60,16 @@ namespace NDExt.Commands
                 // パッケージ化を実行します。
                 var service = new PackageService();
                 service.Package(request);
-                return cSuccess;
+                return Success;
 
-            } catch ( Exception ex)
+            }
+            catch (Exception ex)
             {
                 WriteError(ex);
-                return cFail;
+                return Fail;
             }
-
         }
+
+        #endregion
     }
 }
