@@ -75,6 +75,7 @@ nuget.orgへの公開方法を説明します。
 
 ### Github Actionsによる公開
 * `publish`ブランチにマージすると自動的に https://www.nuget.org/packages/NDExt に公開されます。
+  * `main`ブランチから`publish`ブランチにマージするためのプルリクを作成し、管理者にApproveしてもらったのちにマージする。
 * [publish to nugetアクション](https://github.com/denso-create/NextDesign-NDExt/actions/workflows/publish.yml)で実行しています。
 
 ## 参照
