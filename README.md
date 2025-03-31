@@ -73,6 +73,11 @@ nuget.orgへの公開方法を説明します。
 2. 公開方法
    * `publish.cmd`を実行して下さい。
 
+上記方法で公開できない場合は以下手順で公開します。
+1. [nuget.org](https://www.nuget.org/)にアクセスし、サインインする
+2. [Upload]タブを開く
+3. [Browse...]ボタンを押下し、アップロードするnugetパッケージを選択し、アップロードする
+
 ### Github Actionsによる公開
 * `publish`ブランチにマージすると自動的に https://www.nuget.org/packages/NDExt に公開されます。
   * `main`ブランチから`publish`ブランチにマージするためのプルリクを作成し、管理者にApproveしてもらったのちにマージする。
