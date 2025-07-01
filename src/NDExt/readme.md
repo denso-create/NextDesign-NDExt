@@ -80,7 +80,7 @@ This is a tool for developing extensions for Next Design.
 - [4. Documentation](#4-documentation)
 
 ## 1. Required environment
-* To run this program, you need to install [.NET8 SDK](https://dotnet.microsoft.com/ja-jp/download/dotnet/8.0) and nuget.exe.
+* To run this program, you need to install [.NET8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) and nuget.exe.
 * Download nuget.exe from the [official website](https://www.nuget.org/downloads), save it in an appropriate folder, and add that folder to the PATH environment variable (it will not work properly if the path is not set).
 
 ## 2. How to install
@@ -140,4 +140,4 @@ Commands:
 If the `pack` command is executed successfully, a nupkg file will be created in the `ndpackages` folder.
 
 ## 4. Documentation
-For detailed usage, please refer to [NDExt documentation](https://docs.nextdesign.app/extension/docs/tools/ndext/intro).
+For detailed usage, please refer to [NDExt documentation](https://docs.nextdesign.app/extension/en/docs/tools/ndext/intro).
