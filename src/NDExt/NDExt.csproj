@@ -14,7 +14,10 @@
     <Company>DENSO CREATE INC.</Company>
     <Product />
     <Description>* Next Designのエクステンション開発のためのユーティリティコマンドです。
-* Next Design V2.0以降を対象にしています。</Description>
+* Next Design V2.0以降を対象にしています。
+
+* Utility commands for developing extensions for Next Design.
+* For Next Design V2.0 and later.</Description>
     <PackageProjectUrl>https://docs.nextdesign.app/extension/docs/tools/ndext/intro</PackageProjectUrl>
     <NoDefaultExcludes>true</NoDefaultExcludes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
