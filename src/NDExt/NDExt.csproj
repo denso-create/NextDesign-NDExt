@@ -18,7 +18,7 @@
 
 * Utility commands for developing extensions for Next Design.
 * For Next Design V2.0 and later.</Description>
-    <PackageProjectUrl>https://docs.nextdesign.app/extension/docs/tools/ndext/intro</PackageProjectUrl>
+    <PackageProjectUrl>https://www.nextdesign.app</PackageProjectUrl>
     <NoDefaultExcludes>true</NoDefaultExcludes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes></PackageReleaseNotes>
