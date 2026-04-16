@@ -205,8 +205,8 @@ Template Description: '{2}'</value>
   <data name="LogSolutionFileDetected1" xml:space="preserve">
     <value>ソリューションファイル `{0}` を検出しました。このファイルにプロジェクトを追加します。</value>
   </data>
-  <data name="LogCreatingSolutionFile1" xml:space="preserve">
-    <value>ソリューションファイルを作成します。 {0}</value>
+  <data name="LogCreatedSolutionFile1" xml:space="preserve">
+    <value>ソリューションファイルを作成しました。 {0}</value>
   </data>
   <data name="ErrorProjectFileAlreadyExists0" xml:space="preserve">
     <value>プロジェクトファイルがすでに存在しているため処理を中止します。</value>
