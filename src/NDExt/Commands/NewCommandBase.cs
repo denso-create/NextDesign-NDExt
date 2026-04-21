@@ -18,7 +18,7 @@ namespace NDExt.Commands
         /// <summary>
         /// ソリューションファイルの拡張子。
         /// </summary>
-        /// <remarks>>
+        /// <remarks>
         /// 優先して使用したい拡張子を先に記載すること。
         /// </remarks>
         private static readonly string[] c_SolutionFileExtensions = [".slnx", ".sln"];
