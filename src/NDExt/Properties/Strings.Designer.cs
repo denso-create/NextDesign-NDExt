@@ -268,6 +268,15 @@ namespace NDExt.Properties {
         }
         
         /// <summary>
+        ///   ソリューションファイルの作成に失敗しました。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ErrorSolutionFileCreationFailed0 {
+            get {
+                return ResourceManager.GetString("ErrorSolutionFileCreationFailed0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   csprojファイルでパッケージバージョンが指定されていません。バージョン（`Version`）を指定して下さい。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ErrorVersionNotSpecified0 {

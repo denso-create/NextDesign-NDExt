@@ -106,6 +106,11 @@ namespace NDExt.Commands
             ExecuteProcess("dotnet", $"new sln -n {projectName}");
 
             slnFile = EnumerateSolution(CurrentDir).FirstOrDefault();
+            if (slnFile == null)
+            {
+                throw new UserException(Strings.ErrorSolutionFileCreationFailed0);
+            }
+
             WriteLine(string.Format(Strings.LogCreatedSolutionFile1, slnFile));
 
             return slnFile;

@@ -214,6 +214,9 @@ Template Description: '{2}'</value>
   <data name="ErrorProjectFileCreationFailed0" xml:space="preserve">
     <value>プロジェクトファイルの作成に失敗しました。</value>
   </data>
+  <data name="ErrorSolutionFileCreationFailed0" xml:space="preserve">
+    <value>ソリューションファイルの作成に失敗しました。</value>
+  </data>
   <data name="LogProjectFileCreated2" xml:space="preserve">
     <value>{0}に `{1}` を作成しました。</value>
   </data>
