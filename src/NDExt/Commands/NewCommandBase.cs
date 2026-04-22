@@ -1,6 +1,7 @@
 ﻿using NDExt.Properties;
 using NDExt.Utils;
 using System;
+using System.Collections.Generic;
 using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
@@ -17,7 +18,10 @@ namespace NDExt.Commands
         /// <summary>
         /// ソリューションファイルの拡張子。
         /// </summary>
-        private const string c_SolutionFileExtension = ".sln";
+        /// <remarks>
+        /// 優先して使用したい拡張子を先に記載すること。
+        /// </remarks>
+        private static readonly string[] c_SolutionFileExtensions = [".slnx", ".sln"];
 
         #endregion
 
@@ -90,7 +94,7 @@ namespace NDExt.Commands
         /// <returns>ソリューションファイルのパス。</returns>
         protected string CreateOrGetSolution(string projectName)
         {
-            var slnFile = Directory.EnumerateFiles(CurrentDir, $"*{c_SolutionFileExtension}").FirstOrDefault();
+            var slnFile = EnumerateSolution(CurrentDir).FirstOrDefault();
 
             if (!string.IsNullOrEmpty(slnFile))
             {
@@ -98,13 +102,46 @@ namespace NDExt.Commands
                 return slnFile;
             }
 
-            slnFile = Path.Combine(CurrentDir, $"{projectName}{c_SolutionFileExtension}");
-            WriteLine(string.Format(Strings.LogCreatingSolutionFile1, slnFile));
-
             // ソリューションを作成する
             ExecuteProcess("dotnet", $"new sln -n {projectName}");
 
+            slnFile = EnumerateSolution(CurrentDir).FirstOrDefault();
+            if (slnFile == null)
+            {
+                throw new UserException(Strings.ErrorSolutionFileCreationFailed0);
+            }
+
+            WriteLine(string.Format(Strings.LogCreatedSolutionFile1, slnFile));
+
             return slnFile;
+        }
+
+        /// <summary>
+        /// フォルダ内のソリューションファイルを列挙します。
+        /// </summary>
+        /// <param name="path">検索対象のフォルダパス。</param>
+        /// <returns>ソリューションファイルの列挙。</returns>
+        private IEnumerable<string> EnumerateSolution(string path)
+        {
+            var patterns = c_SolutionFileExtensions.Select(ext => $"*{ext}");
+            return EnumerateFilesMultiPattern(path, patterns);
+        }
+
+        /// <summary>
+        /// フォルダ内のパターンに一致するファイルを列挙します。
+        /// </summary>
+        /// <param name="path">検索対象のフォルダパス。</param>
+        /// <param name="patterns">検索パターンの列挙。</param>
+        /// <returns>一致するファイルの列挙。</returns>
+        private IEnumerable<string> EnumerateFilesMultiPattern(string path, IEnumerable<string> patterns)
+        {
+            foreach (var pattern in patterns)
+            {
+                foreach (var foundPath in Directory.EnumerateFiles(path, pattern))
+                {
+                    yield return foundPath;
+                }
+            }
         }
 
         /// <summary>

@@ -19,7 +19,7 @@ namespace NDExt.Properties {
     // または Visual Studio のようなツールを使用して自動生成されました。
     // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
     // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Strings {
@@ -268,6 +268,15 @@ namespace NDExt.Properties {
         }
         
         /// <summary>
+        ///   ソリューションファイルの作成に失敗しました。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ErrorSolutionFileCreationFailed0 {
+            get {
+                return ResourceManager.GetString("ErrorSolutionFileCreationFailed0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   csprojファイルでパッケージバージョンが指定されていません。バージョン（`Version`）を指定して下さい。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ErrorVersionNotSpecified0 {
@@ -353,11 +362,11 @@ namespace NDExt.Properties {
         }
         
         /// <summary>
-        ///   ソリューションファイルを作成します。 {0} に類似しているローカライズされた文字列を検索します。
+        ///   ソリューションファイルを作成しました。 {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string LogCreatingSolutionFile1 {
+        internal static string LogCreatedSolutionFile1 {
             get {
-                return ResourceManager.GetString("LogCreatingSolutionFile1", resourceCulture);
+                return ResourceManager.GetString("LogCreatedSolutionFile1", resourceCulture);
             }
         }
         

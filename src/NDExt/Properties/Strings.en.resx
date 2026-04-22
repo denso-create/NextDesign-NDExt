@@ -205,14 +205,17 @@ Template Description: '{2}'</value>
   <data name="LogSolutionFileDetected1" xml:space="preserve">
     <value>Solution file `{0}` detected. Adding the project to this file.</value>
   </data>
-  <data name="LogCreatingSolutionFile1" xml:space="preserve">
-    <value>Creating solution file. {0}</value>
+  <data name="LogCreatedSolutionFile1" xml:space="preserve">
+    <value>Created solution file. {0}</value>
   </data>
   <data name="ErrorProjectFileAlreadyExists0" xml:space="preserve">
     <value>Project file already exists, aborting the process.</value>
   </data>
   <data name="ErrorProjectFileCreationFailed0" xml:space="preserve">
     <value>Failed to create the project file.</value>
+  </data>
+  <data name="ErrorSolutionFileCreationFailed0" xml:space="preserve">
+    <value>Failed to create the solution file.</value>
   </data>
   <data name="LogProjectFileCreated2" xml:space="preserve">
     <value>Created `{1}` in {0}.</value>

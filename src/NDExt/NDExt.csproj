@@ -8,7 +8,7 @@
     <ToolCommandName>ndext</ToolCommandName>
     <Nullable>disable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.4.0</Version>
+    <Version>1.5.0</Version>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <Authors>DENSO CREATE INC.</Authors>
     <Company>DENSO CREATE INC.</Company>
@@ -20,7 +20,6 @@
 * For Next Design V2.0 and later.</Description>
     <PackageProjectUrl>https://github.com/denso-create/NextDesign-NDExt</PackageProjectUrl>
     <NoDefaultExcludes>true</NoDefaultExcludes>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes></PackageReleaseNotes>
     <RepositoryUrl>https://github.com/denso-create/NextDesign-NDExt</RepositoryUrl>
   </PropertyGroup>

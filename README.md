@@ -86,5 +86,5 @@ nuget.orgへの公開方法を説明します。
 *  関連パッケージもnuget.orgにて[公開](https://www.nuget.org/profiles/densocreate)しています。
 
 
-## ライセンス
-本ライブラリはMITライセンスです。詳細は[LICENSE](./LICENSE) を確認してください。
+## ライセンス　/　免責事項
+本拡張機能は、Next Designの使用許諾契約書におけるサンプルとして提供されています。サンプルに関する取り扱い、および免責事項については、Next Designの使用許諾契約書（[使用許諾契約 | システム・ソフトウェア設計ツール Next Design](https://www.nextdesign.app/support/agreements/)）に準拠します。ご利用にあたっては、当該使用許諾契約書の内容をご確認ください。
